@@ -23,15 +23,21 @@ const FormField = <T extends FieldValues>({
                                               placeholder,
                                               type = "text",
                                           }: FormFieldProps<T>) => {
+    // 👇 stable id based on field name
+    const inputId = `field-${name}`;
+
     return (
         <Controller
             control={control}
             name={name}
             render={({ field }) => (
                 <FormItem>
-                    <FormLabel className="label">{label}</FormLabel>
+                    <FormLabel htmlFor={inputId} className="label">
+                        {label}
+                    </FormLabel>
                     <FormControl>
                         <Input
+                            id={inputId}
                             className="input"
                             type={type}
                             placeholder={placeholder}
