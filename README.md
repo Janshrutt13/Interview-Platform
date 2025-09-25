@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Insta-Prep -> Interview Assistant
 
-## Getting Started
+An AI-powered interview preparation tool that generates personalized questions, conducts mock interviews, and provides instant feedback based on answers. Users can connect to a live call, answer a few questions, and then receive a customized set of interview questions tailored to their profile.
 
-First, run the development server:
+🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🤖 AI-Powered Question Generation – Generates interview questions dynamically using Gemini AI.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🎤 Voice Call Integration – Connect to a call via Vapi and practice real-time responses.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+📊 Feedback System – Provides instant feedback on your answers for improvement.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+📝 Personalized Question Sets – After the call, a tailored set of questions is prepared for further practice.
 
-## Learn More
+🔐 Authentication & Data Storage – Powered by Firebase for secure login and answer storage.
 
-To learn more about Next.js, take a look at the following resources:
+🎨 Modern UI – Built with Next.js, TailwindCSS, and shadcn/ui for a clean and responsive experience.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+🛠️ Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Frontend: Next.js
 
-## Deploy on Vercel
+Styling: TailwindCSS
+ + shadcn/ui
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+AI: Gemini API
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Voice Integration: Vapi
+
+Backend & Auth: Firebase
