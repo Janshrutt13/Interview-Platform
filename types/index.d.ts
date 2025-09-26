@@ -25,11 +25,13 @@ interface Interview {
   finalized: boolean;
 }
 
-interface CreateFeedbackParams {
-  interviewId: string;
+interface GenerateInterviewDossierParams {
+  jobDescription: string;
+  resume: string;
+  companyName: string;
+  concerns: string;
   userId: string;
-  transcript: { role: string; content: string }[];
-  feedbackId?: string;
+  isAxonMode?: boolean;
 }
 
 interface User {
@@ -47,13 +49,9 @@ interface InterviewCardProps {
   createdAt?: string;
 }
 
-interface AgentProps {
+interface InterviewStrategistProps {
   userName: string;
-  userId?: string;
-  interviewId?: string;
-  feedbackId?: string;
-  type: "generate" | "interview";
-  questions?: string[];
+  userId: string;
 }
 
 interface RouteParams {

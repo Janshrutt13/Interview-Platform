@@ -1,8 +1,10 @@
+import { redirect } from "next/navigation";
 import InterviewStrategist from "@/components/InterviewStrategist";
 import {getCurrentUser} from "@/lib/actions/auth.action";
-import {redirect} from "next/navigation";
 
-const page = async () => {
+const InterviewDetails =  async ({params } : RouteParams) => {
+    const {id} = await params;
+
     const user = await getCurrentUser();
 
     if (!user?.name || !user?.id) {
@@ -17,6 +19,4 @@ const page = async () => {
     );
 };
 
-export default page;
-
-
+export default InterviewDetails;
