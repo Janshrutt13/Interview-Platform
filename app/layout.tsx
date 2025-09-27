@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Mona_Sans } from "next/font/google";
 import "./globals.css";
 import {Toaster} from "sonner";
+import Navbar from "@/components/Navbar";
+import { AuthProvider } from "@/context/AuthContext";
 
 const monaSans = Mona_Sans({
   variable: "--font-mona-sans",
@@ -20,12 +22,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className= "dark">
-      <body
-        className={`${monaSans.className}  antialiased pattern`}
-      >
-        {children}
-
-      <Toaster/>
+      <body className={`${monaSans.className}  antialiased pattern`}>
+        <AuthProvider>
+          <Navbar />
+          <div className="pt-20">{/* Add padding for fixed navbar */}
+            {children}
+          </div>
+          <Toaster/>
+        </AuthProvider>
       </body>
     </html>
   );
