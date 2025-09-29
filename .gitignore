@@ -1,2 +1,73 @@
-https://stackblitz.com/storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCTEc4Q2dJPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--5021a2c4b8333c2bfd0e70b14888547b7e19e6ca//.gitignore
+# General
+# -------------------------------------------------------------------
+# Compiled source code and build artifacts
+build/
+dist/
+bin/
+target/
+*.o
+*.out
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Log files and directories
+*.log
+logs/
+npm-debug.log*
+yarn-error.log*
+yarn-debug.log*
+
+# Archives
+*.zip
+*.tar.*
+*.rar
+
+# IDE and Editor Directories
+# -------------------------------------------------------------------
+.idea/
+.vscode/
+# Note: You might want to track shared settings.
+# For example, to keep .vscode/settings.json, uncomment the next line:
+# !.vscode/settings.json
+
+*.suo
+*.user
+*.iml
+*.project
+.classpath
+
+# Sensitive Information
+# -------------------------------------------------------------------
+# Environment variables. A template should be committed instead (e.g., .env.example)
 .env
+.env.*
+!.env.example
+
+# Credentials and secrets
+credentials.json
+secrets.yml
+config.py
+private_key.pem
+
+
+
+# Node.js
+node_modules/
+package-lock.json # Optional: some teams commit this, others don't.
+# If you use yarn, you might commit yarn.lock but ignore node_modules.
+
+
+
+# Miscellaneous
+# -------------------------------------------------------------------
+# Temporary files
+*.tmp
+*~
+*.swp
+
+# OS generated files
+.Spotlight-V100
+.Trashes
