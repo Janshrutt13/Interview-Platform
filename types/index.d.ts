@@ -95,3 +95,74 @@ interface InterviewFormProps {
 interface TechIconProps {
   techStack: string[];
 }
+
+// Axon Interview Strategist Types
+interface StartAxonSessionParams {
+  userId: string;
+  jobRole: string;
+  experience: string;
+  sessionType: string;
+}
+
+interface GetInstantFeedbackParams {
+  sessionId: string;
+  questionIndex: number;
+  textAnswer: string;
+  audioBlob?: Blob;
+  userId: string;
+}
+
+interface GetNextQuestionParams {
+  sessionId: string;
+  currentIndex: number;
+}
+
+interface EndAxonSessionParams {
+  sessionId: string;
+  userId: string;
+}
+
+interface GetAxonSessionHistoryParams {
+  userId: string;
+  limit?: number;
+}
+
+interface AxonSession {
+  sessionId: string;
+  userId: string;
+  jobRole: string;
+  experience: string;
+  sessionType: string;
+  questions: string[];
+  currentQuestionIndex: number;
+  startTime: Date;
+  endTime?: Date;
+  status: 'active' | 'completed' | 'paused';
+  responses: AxonResponse[];
+  summary?: AxonSessionSummary;
+}
+
+interface AxonResponse {
+  questionIndex: number;
+  question: string;
+  answer: string;
+  feedback: InstantFeedback;
+  timestamp: Date;
+  hasAudio: boolean;
+}
+
+interface InstantFeedback {
+  confidence: number;
+  clarity: number;
+  pace: number;
+  keyPoints: string[];
+  suggestions: string[];
+}
+
+interface AxonSessionSummary {
+  overallScore: number;
+  strengths: string[];
+  areasForImprovement: string[];
+  keyInsights: string[];
+  nextSteps: string[];
+}

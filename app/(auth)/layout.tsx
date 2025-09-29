@@ -1,14 +1,21 @@
-import React, {ReactNode} from 'react';
-import {isAuthenticated} from "@/lib/actions/auth.action";
-import {redirect} from "next/navigation";
+"use client";
+import React, { ReactNode, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
-const AuthLayout = async  ( { children } :{ children : ReactNode}) => {
-    const isUserAuthenticated = await isAuthenticated();
+const AuthLayout = ({ children }: { children: ReactNode }) => {
+  const { currentUser, loading } = useAuth();
+  const router = useRouter();
 
-    if(isUserAuthenticated) redirect('/');
-    return (
-        <div className="auth-layout"> { children }</div>
-    );
+  useEffect(() => {
+    if (!loading && currentUser) {
+      router.replace("/");
+    }
+  }, [loading, currentUser, router]);
+
+  if (loading) return null;
+
+  return <div className="auth-layout">{children}</div>;
 };
 
-export default AuthLayout ;
+export default AuthLayout;

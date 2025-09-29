@@ -36,6 +36,7 @@ interface NavLink {
 
 const navLinks: NavLink[] = [
   { href: "/", label: "Home" },
+  { href: "/axon", label: "AXON Practice" },
   { href: "/skills", label: "My Skills" },
   { href: "/profile", label: "My Profile" },
   { href: "/about", label: "About" },
@@ -51,7 +52,7 @@ function getInitials(nameOrEmail?: string | null): string {
 
 const Navbar: React.FC = () => {
   const pathname = usePathname();
-  const { currentUser } = useAuth();
+  const { currentUser, loading } = useAuth();
   const router = useRouter();
 
   const handleSignOut = async () => {
@@ -89,37 +90,39 @@ const Navbar: React.FC = () => {
             </NavigationMenuList>
           </NavigationMenu>
           <div className="flex-1" />
-          {currentUser ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="ml-2" aria-label="Account">
-                  <Avatar>
-                    {currentUser.photoURL ? (
-                      <AvatarImage src={currentUser.photoURL} alt={currentUser.displayName || currentUser.email || "User"} />
-                    ) : (
-                      <AvatarFallback>{getInitials(currentUser.displayName || currentUser.email)}</AvatarFallback>
-                    )}
-                  </Avatar>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuLabel>
-                  {currentUser.displayName || currentUser.email}
-                </DropdownMenuLabel>
-                <DropdownMenuItem asChild>
-                  <Link href="/profile">Profile</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/skills">My Skills</Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem onSelect={handleSignOut}>Sign Out</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          ) : (
-            <Button asChild variant="default" className="ml-2">
-              <Link href="/login">Sign In</Link>
-            </Button>
+          {!loading && (
+            currentUser ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="ml-2" aria-label="Account">
+                    <Avatar>
+                      {currentUser.photoURL ? (
+                        <AvatarImage src={currentUser.photoURL} alt={currentUser.displayName || currentUser.email || "User"} />
+                      ) : (
+                        <AvatarFallback>{getInitials(currentUser.displayName || currentUser.email)}</AvatarFallback>
+                      )}
+                    </Avatar>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuLabel>
+                    {currentUser.displayName || currentUser.email}
+                  </DropdownMenuLabel>
+                  <DropdownMenuItem asChild>
+                    <Link href="/profile">Profile</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/skills">My Skills</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onSelect={handleSignOut}>Sign Out</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button asChild variant="default" className="ml-2">
+                <Link href="/sign-up">Sign In</Link>
+              </Button>
+            )
           )}
         </div>
         {/* Mobile Navigation */}
@@ -149,37 +152,39 @@ const Navbar: React.FC = () => {
                   ))}
                 </div>
                 <div className="border-t mt-4 pt-4 px-6">
-                  {currentUser ? (
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon" aria-label="Account">
-                          <Avatar>
-                            {currentUser.photoURL ? (
-                              <AvatarImage src={currentUser.photoURL} alt={currentUser.displayName || currentUser.email || "User"} />
-                            ) : (
-                              <AvatarFallback>{getInitials(currentUser.displayName || currentUser.email)}</AvatarFallback>
-                            )}
-                          </Avatar>
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>
-                          {currentUser.displayName || currentUser.email}
-                        </DropdownMenuLabel>
-                        <DropdownMenuItem asChild>
-                          <Link href="/profile">Profile</Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem asChild>
-                          <Link href="/skills">My Skills</Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem onSelect={handleSignOut}>Sign Out</DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  ) : (
-                    <Button asChild variant="default">
-                      <Link href="/login">Sign In</Link>
-                    </Button>
+                  {!loading && (
+                    currentUser ? (
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="ghost" size="icon" aria-label="Account">
+                            <Avatar>
+                              {currentUser.photoURL ? (
+                                <AvatarImage src={currentUser.photoURL} alt={currentUser.displayName || currentUser.email || "User"} />
+                              ) : (
+                                <AvatarFallback>{getInitials(currentUser.displayName || currentUser.email)}</AvatarFallback>
+                              )}
+                            </Avatar>
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuLabel>
+                            {currentUser.displayName || currentUser.email}
+                          </DropdownMenuLabel>
+                          <DropdownMenuItem asChild>
+                            <Link href="/profile">Profile</Link>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem asChild>
+                            <Link href="/skills">My Skills</Link>
+                          </DropdownMenuItem>
+                          <DropdownMenuSeparator />
+                          <DropdownMenuItem onSelect={handleSignOut}>Sign Out</DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    ) : (
+                      <Button asChild variant="default">
+                        <Link href="/sign-up">Sign In</Link>
+                      </Button>
+                    )
                   )}
                 </div>
               </nav>

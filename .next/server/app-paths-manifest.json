@@ -1,0 +1,7 @@
+{
+  "/api/user/skills/route": "app/api/user/skills/route.js",
+  "/axon/page": "app/axon/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js",
+  "/skills/page": "app/skills/page.js"
+}

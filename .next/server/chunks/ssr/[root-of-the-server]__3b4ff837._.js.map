@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 25, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/lenovo/OneDrive/Desktop/interview-platform/app/%28auth%29/sign-in/page.tsx"],"sourcesContent":["import React from 'react';\r\nimport AuthForm from \"@/components/AuthForm\";\r\n\r\nconst page = () => {\r\n        return <AuthForm type = \"sign-in\" />\r\n};\r\n\r\nexport default page;\r\n"],"names":[],"mappings":";;;;;AACA;;;AAEA,MAAM,OAAO;IACL,qBAAO,8OAAC,kIAAQ;QAAC,MAAO;;;;;;AAChC;uCAEe","debugId":null}}]
+}

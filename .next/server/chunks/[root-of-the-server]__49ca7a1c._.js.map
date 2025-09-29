@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 37, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/lenovo/OneDrive/Desktop/interview-platform/app/api/vapi/generate/route.ts"],"sourcesContent":["\r\nexport async function GET() {\r\n    return Response.json({ success: true  , data : 'THANK YOU!'} , {status : 200});\r\n}"],"names":[],"mappings":";;;;AACO,eAAe;IAClB,OAAO,SAAS,IAAI,CAAC;QAAE,SAAS;QAAQ,MAAO;IAAY,GAAI;QAAC,QAAS;IAAG;AAChF","debugId":null}}]
+}

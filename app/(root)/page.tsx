@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import Chatbot from "@/components/Chatbot";
+import PhaseComparison from "@/components/PhaseComparison";
 import {getCurrentUser} from "@/lib/actions/auth.action";
 
 
@@ -13,14 +14,19 @@ async function Home() {
         <>
             <section className="card-cta">
                 <div className="flex flex-col gap-6 max-w-lg">
-                    <h2>Get Interview-Ready with AI-Powered Strategy</h2>
+                    <h2>Master Your Interview Skills</h2>
                     <p className="text-lg">
-                        Generate personalized interview dossiers with strategic insights and preparation materials
+                        Two-phase approach: Practice with AXON for real-time feedback, then create strategic dossiers for deep preparation
                     </p>
 
-                    <Button asChild className="btn-primary max-sm:w-full">
-                        <Link href="/interview">Generate Interview Dossier</Link>
-                    </Button>
+                    <div className="flex gap-4 max-sm:flex-col">
+                        <Button asChild className="btn-primary">
+                            <Link href="/axon">Start AXON Practice</Link>
+                        </Button>
+                        <Button asChild variant="outline">
+                            <Link href="/interview">Create Dossier</Link>
+                        </Button>
+                    </div>
                 </div>
 
                 <Image
@@ -31,6 +37,8 @@ async function Home() {
                     className="max-sm:hidden"
                 />
             </section>
+
+            <PhaseComparison />
 
             <section className="flex flex-col gap-6 mt-8">
                 <h2>How It Works</h2>

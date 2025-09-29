@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 15, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/lenovo/OneDrive/Desktop/interview-platform/app/SkillsPage.tsx"],"sourcesContent":["import React from \"react\";\r\n\r\nconst SkillsPage: React.FC = () => {\r\n  return (\r\n    <div className=\"max-w-2xl mx-auto p-8\">\r\n      <h1 className=\"text-3xl font-bold mb-8\">My Skills</h1>\r\n      <p>This is the Skills page. Implement your skills management UI here.</p>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default SkillsPage;\r\n"],"names":[],"mappings":";;;;;;AAEA,MAAM,aAAuB;IAC3B,qBACE,8OAAC;QAAI,WAAU;;0BACb,8OAAC;gBAAG,WAAU;0BAA0B;;;;;;0BACxC,8OAAC;0BAAE;;;;;;;;;;;;AAGT;uCAEe","debugId":null}},
+    {"offset": {"line": 52, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/lenovo/OneDrive/Desktop/interview-platform/app/skills/page.tsx"],"sourcesContent":["export { default } from \"../SkillsPage\";\r\n"],"names":[],"mappings":";AAAA","debugId":null}}]
+}
