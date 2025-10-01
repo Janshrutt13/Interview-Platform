@@ -1,0 +1,10 @@
+var R=require("../../../chunks/[turbopack]_runtime.js")("server/app/api/recommendations/route.js")
+R.c("server/chunks/node_modules_next_a6bad756._.js")
+R.c("server/chunks/node_modules_@opentelemetry_api_build_esm_7e8f41ca._.js")
+R.c("server/chunks/node_modules_zod_fa5bc677._.js")
+R.c("server/chunks/node_modules_ai_dist_index_mjs_b0116780._.js")
+R.c("server/chunks/node_modules_58338380._.js")
+R.c("server/chunks/[root-of-the-server]__47de00d7._.js")
+R.m("[project]/.next-internal/server/app/api/recommendations/route/actions.js [app-rsc] (server actions loader, ecmascript)")
+R.m("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/app/api/recommendations/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)")
+module.exports=R.m("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/app/api/recommendations/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)").exports

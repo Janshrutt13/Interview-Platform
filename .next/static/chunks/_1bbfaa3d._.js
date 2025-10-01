@@ -181,10 +181,6 @@ function SkillsPage() {
         }
         try {
             const token = await currentUser.getIdToken();
-            console.log("Adding skill:", {
-                skill: skillInput.trim(),
-                domain: selectedDomain.id
-            });
             const res = await fetch("/api/user/skills", {
                 method: "POST",
                 headers: {
@@ -197,13 +193,10 @@ function SkillsPage() {
                 })
             });
             const responseData = await res.json();
-            console.log("Add skill response:", responseData);
             if (res.ok) {
-                console.log("Skill added successfully");
                 setSkillInput("");
                 fetchSkills();
             } else {
-                console.error("Failed to add skill:", responseData);
                 alert("Failed to add skill: ".concat(responseData.error || 'Unknown error'));
             }
         } catch (error) {
@@ -247,17 +240,17 @@ function SkillsPage() {
                     className: "animate-spin rounded-full h-8 w-8 border-b-2 border-primary"
                 }, void 0, false, {
                     fileName: "[project]/app/skills/page.tsx",
-                    lineNumber: 181,
+                    lineNumber: 178,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/skills/page.tsx",
-                lineNumber: 180,
+                lineNumber: 177,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/skills/page.tsx",
-            lineNumber: 179,
+            lineNumber: 176,
             columnNumber: 7
         }, this);
     }
@@ -272,7 +265,7 @@ function SkillsPage() {
                         children: "My Skills"
                     }, void 0, false, {
                         fileName: "[project]/app/skills/page.tsx",
-                        lineNumber: 190,
+                        lineNumber: 187,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -280,13 +273,13 @@ function SkillsPage() {
                         children: selectedDomain ? "Add up to 5 skills in ".concat(selectedDomain.name) : "Choose your primary domain and add your top 5 skills"
                     }, void 0, false, {
                         fileName: "[project]/app/skills/page.tsx",
-                        lineNumber: 191,
+                        lineNumber: 188,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/skills/page.tsx",
-                lineNumber: 189,
+                lineNumber: 186,
                 columnNumber: 7
             }, this),
             !selectedDomain ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -297,7 +290,7 @@ function SkillsPage() {
                         children: "Select Your Primary Domain"
                     }, void 0, false, {
                         fileName: "[project]/app/skills/page.tsx",
-                        lineNumber: 201,
+                        lineNumber: 198,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -320,7 +313,7 @@ function SkillsPage() {
                                                         children: domain.name
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/skills/page.tsx",
-                                                        lineNumber: 215,
+                                                        lineNumber: 212,
                                                         columnNumber: 25
                                                     }, this),
                                                     domainSkillCount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -331,13 +324,13 @@ function SkillsPage() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/skills/page.tsx",
-                                                        lineNumber: 217,
+                                                        lineNumber: 214,
                                                         columnNumber: 27
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/skills/page.tsx",
-                                                lineNumber: 214,
+                                                lineNumber: 211,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -345,7 +338,7 @@ function SkillsPage() {
                                                 children: domain.description
                                             }, void 0, false, {
                                                 fileName: "[project]/app/skills/page.tsx",
-                                                lineNumber: 222,
+                                                lineNumber: 219,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -353,29 +346,29 @@ function SkillsPage() {
                                                 children: domainSkillCount > 0 ? "Manage Skills" : "Add Skills"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/skills/page.tsx",
-                                                lineNumber: 223,
+                                                lineNumber: 220,
                                                 columnNumber: 23
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/skills/page.tsx",
-                                        lineNumber: 213,
+                                        lineNumber: 210,
                                         columnNumber: 21
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/skills/page.tsx",
-                                    lineNumber: 212,
+                                    lineNumber: 209,
                                     columnNumber: 19
                                 }, this)
                             }, domain.id, false, {
                                 fileName: "[project]/app/skills/page.tsx",
-                                lineNumber: 207,
+                                lineNumber: 204,
                                 columnNumber: 17
                             }, this);
                         })
                     }, void 0, false, {
                         fileName: "[project]/app/skills/page.tsx",
-                        lineNumber: 202,
+                        lineNumber: 199,
                         columnNumber: 11
                     }, this),
                     skills.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -386,7 +379,7 @@ function SkillsPage() {
                                 children: "Your Skills Overview"
                             }, void 0, false, {
                                 fileName: "[project]/app/skills/page.tsx",
-                                lineNumber: 235,
+                                lineNumber: 232,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -406,7 +399,7 @@ function SkillsPage() {
                                                         children: domain.name
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/skills/page.tsx",
-                                                        lineNumber: 245,
+                                                        lineNumber: 242,
                                                         columnNumber: 27
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -416,46 +409,46 @@ function SkillsPage() {
                                                                 children: skill.name
                                                             }, skill.name, false, {
                                                                 fileName: "[project]/app/skills/page.tsx",
-                                                                lineNumber: 248,
+                                                                lineNumber: 245,
                                                                 columnNumber: 31
                                                             }, this))
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/skills/page.tsx",
-                                                        lineNumber: 246,
+                                                        lineNumber: 243,
                                                         columnNumber: 27
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/skills/page.tsx",
-                                                lineNumber: 244,
+                                                lineNumber: 241,
                                                 columnNumber: 25
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/skills/page.tsx",
-                                            lineNumber: 243,
+                                            lineNumber: 240,
                                             columnNumber: 23
                                         }, this)
                                     }, domain.id, false, {
                                         fileName: "[project]/app/skills/page.tsx",
-                                        lineNumber: 242,
+                                        lineNumber: 239,
                                         columnNumber: 21
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/app/skills/page.tsx",
-                                lineNumber: 236,
+                                lineNumber: 233,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/skills/page.tsx",
-                        lineNumber: 234,
+                        lineNumber: 231,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/skills/page.tsx",
-                lineNumber: 200,
+                lineNumber: 197,
                 columnNumber: 9
             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "space-y-6",
@@ -469,7 +462,7 @@ function SkillsPage() {
                                 children: "← Back to Domains"
                             }, void 0, false, {
                                 fileName: "[project]/app/skills/page.tsx",
-                                lineNumber: 268,
+                                lineNumber: 265,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -479,7 +472,7 @@ function SkillsPage() {
                                         children: selectedDomain.name
                                     }, void 0, false, {
                                         fileName: "[project]/app/skills/page.tsx",
-                                        lineNumber: 272,
+                                        lineNumber: 269,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -487,19 +480,19 @@ function SkillsPage() {
                                         children: selectedDomain.description
                                     }, void 0, false, {
                                         fileName: "[project]/app/skills/page.tsx",
-                                        lineNumber: 273,
+                                        lineNumber: 270,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/skills/page.tsx",
-                                lineNumber: 271,
+                                lineNumber: 268,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/skills/page.tsx",
-                        lineNumber: 267,
+                        lineNumber: 264,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -518,7 +511,7 @@ function SkillsPage() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/skills/page.tsx",
-                                        lineNumber: 280,
+                                        lineNumber: 277,
                                         columnNumber: 17
                                     }, this),
                                     currentSkills.length < 5 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -536,7 +529,7 @@ function SkillsPage() {
                                                 }
                                             }, void 0, false, {
                                                 fileName: "[project]/app/skills/page.tsx",
-                                                lineNumber: 286,
+                                                lineNumber: 283,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -545,13 +538,13 @@ function SkillsPage() {
                                                 children: "Add Skill"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/skills/page.tsx",
-                                                lineNumber: 297,
+                                                lineNumber: 294,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/skills/page.tsx",
-                                        lineNumber: 285,
+                                        lineNumber: 282,
                                         columnNumber: 19
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "bg-yellow-50 border border-yellow-200 rounded-md p-4 mb-4",
@@ -560,12 +553,12 @@ function SkillsPage() {
                                             children: "You've reached the maximum of 5 skills for this domain. Remove a skill to add a new one."
                                         }, void 0, false, {
                                             fileName: "[project]/app/skills/page.tsx",
-                                            lineNumber: 303,
+                                            lineNumber: 300,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/skills/page.tsx",
-                                        lineNumber: 302,
+                                        lineNumber: 299,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -580,7 +573,7 @@ function SkillsPage() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/skills/page.tsx",
-                                                lineNumber: 310,
+                                                lineNumber: 307,
                                                 columnNumber: 19
                                             }, this),
                                             currentSkills.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -597,47 +590,47 @@ function SkillsPage() {
                                                                 children: "×"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/skills/page.tsx",
-                                                                lineNumber: 319,
+                                                                lineNumber: 316,
                                                                 columnNumber: 27
                                                             }, this)
                                                         ]
                                                     }, skill, true, {
                                                         fileName: "[project]/app/skills/page.tsx",
-                                                        lineNumber: 314,
+                                                        lineNumber: 311,
                                                         columnNumber: 25
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/app/skills/page.tsx",
-                                                lineNumber: 312,
+                                                lineNumber: 309,
                                                 columnNumber: 21
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                 className: "text-gray-500 text-sm",
                                                 children: "No skills added yet for this domain."
                                             }, void 0, false, {
                                                 fileName: "[project]/app/skills/page.tsx",
-                                                lineNumber: 331,
+                                                lineNumber: 328,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/skills/page.tsx",
-                                        lineNumber: 309,
+                                        lineNumber: 306,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/skills/page.tsx",
-                                lineNumber: 279,
+                                lineNumber: 276,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/skills/page.tsx",
-                            lineNumber: 278,
+                            lineNumber: 275,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/skills/page.tsx",
-                        lineNumber: 277,
+                        lineNumber: 274,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -655,7 +648,7 @@ function SkillsPage() {
                                                 children: "Progress"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/skills/page.tsx",
-                                                lineNumber: 342,
+                                                lineNumber: 339,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -666,13 +659,13 @@ function SkillsPage() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/skills/page.tsx",
-                                                lineNumber: 343,
+                                                lineNumber: 340,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/skills/page.tsx",
-                                        lineNumber: 341,
+                                        lineNumber: 338,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -684,40 +677,40 @@ function SkillsPage() {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/app/skills/page.tsx",
-                                            lineNumber: 346,
+                                            lineNumber: 343,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/skills/page.tsx",
-                                        lineNumber: 345,
+                                        lineNumber: 342,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/skills/page.tsx",
-                                lineNumber: 340,
+                                lineNumber: 337,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/skills/page.tsx",
-                            lineNumber: 339,
+                            lineNumber: 336,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/skills/page.tsx",
-                        lineNumber: 338,
+                        lineNumber: 335,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/skills/page.tsx",
-                lineNumber: 266,
+                lineNumber: 263,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/skills/page.tsx",
-        lineNumber: 188,
+        lineNumber: 185,
         columnNumber: 5
     }, this);
 }

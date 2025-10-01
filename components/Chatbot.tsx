@@ -105,7 +105,7 @@ export default function Chatbot({ interviewBriefing }: ChatbotProps) {
             <span className="text-white text-sm font-bold">C</span>
           </div>
           <div>
-            <h3 className="font-semibold text-gray-900">Coach</h3>
+            <h3 className="font-semibold text-lime-100">Coach</h3>
             <p className="text-sm text-gray-500">AI Interview Coach</p>
           </div>
         </div>

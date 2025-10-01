@@ -112,7 +112,7 @@ export default function SkillsPage() {
 
     try {
       const token = await currentUser.getIdToken();
-      console.log("Adding skill:", { skill: skillInput.trim(), domain: selectedDomain.id });
+
       
       const res = await fetch("/api/user/skills", {
         method: "POST",
@@ -127,14 +127,11 @@ export default function SkillsPage() {
       });
 
       const responseData = await res.json();
-      console.log("Add skill response:", responseData);
 
       if (res.ok) {
-        console.log("Skill added successfully");
         setSkillInput("");
         fetchSkills();
       } else {
-        console.error("Failed to add skill:", responseData);
         alert(`Failed to add skill: ${responseData.error || 'Unknown error'}`);
       }
     } catch (error) {

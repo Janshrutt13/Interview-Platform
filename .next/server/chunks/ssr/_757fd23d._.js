@@ -76,6 +76,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/input.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/label.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$data$3a$b79f20__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$text$2f$javascript$3e$__ = __turbopack_context__.i("[project]/lib/actions/data:b79f20 [app-ssr] (ecmascript) <text/javascript>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-ssr] (ecmascript)");
 "use client";
 ;
 ;
@@ -83,7 +84,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$actions$2f$data$3a$b7
 ;
 ;
 ;
+;
 function InterviewStrategist({ userName, userId }) {
+    const searchParams = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useSearchParams"])();
     const [formData, setFormData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])({
         jobDescription: "",
         resume: "",
@@ -94,6 +97,16 @@ function InterviewStrategist({ userName, userId }) {
     const [dossier, setDossier] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [isAxonMode, setIsAxonMode] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [showAxonCompletionMessage, setShowAxonCompletionMessage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (searchParams?.get('axon_completed') === 'true') {
+            setShowAxonCompletionMessage(true);
+            // Clear the URL parameter
+            window.history.replaceState({}, '', '/');
+        }
+    }, [
+        searchParams
+    ]);
     const handleInputChange = (field, value)=>{
         setFormData((prev)=>({
                 ...prev,
@@ -137,72 +150,129 @@ function InterviewStrategist({ userName, userId }) {
     };
     console.log("Component render - dossier:", dossier?.length || 0, "isGenerating:", isGenerating);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "space-y-6",
+        className: "max-w-6xl mx-auto space-y-8",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "text-center space-y-4",
+                className: "text-center space-y-6",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                         className: "text-4xl font-bold",
                         children: isAxonMode ? "AXON Interview Strategist" : "Interview Strategist AI"
                     }, void 0, false, {
                         fileName: "[project]/components/InterviewStrategist.tsx",
-                        lineNumber: 77,
+                        lineNumber: 88,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        className: "text-xl",
                         children: isAxonMode ? "Generate your hyper-personalized Interview Briefing" : "Generate your personalized Interview Dossier"
                     }, void 0, false, {
                         fileName: "[project]/components/InterviewStrategist.tsx",
-                        lineNumber: 80,
+                        lineNumber: 91,
                         columnNumber: 9
                     }, this),
+                    showAxonCompletionMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "card-border max-w-2xl mx-auto",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "card",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "p-6 text-center",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "text-4xl mb-4",
+                                        children: "🎉"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/InterviewStrategist.tsx",
+                                        lineNumber: 102,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                        className: "text-xl font-bold text-success-100 mb-2",
+                                        children: "AXON Session Completed!"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/InterviewStrategist.tsx",
+                                        lineNumber: 103,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-light-100 mb-4",
+                                        children: "Great job completing your AXON practice session! Now let's create a strategic dossier to prepare you for your actual interviews."
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/InterviewStrategist.tsx",
+                                        lineNumber: 104,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
+                                        onClick: ()=>setShowAxonCompletionMessage(false),
+                                        className: "btn-primary",
+                                        children: "Continue to Dossier Generation"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/InterviewStrategist.tsx",
+                                        lineNumber: 108,
+                                        columnNumber: 17
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/InterviewStrategist.tsx",
+                                lineNumber: 101,
+                                columnNumber: 15
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/components/InterviewStrategist.tsx",
+                            lineNumber: 100,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/components/InterviewStrategist.tsx",
+                        lineNumber: 99,
+                        columnNumber: 11
+                    }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex justify-center mt-6",
+                        className: "flex justify-center mt-8",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "card-border",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "card",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "p-1 flex",
+                                    className: "p-2 flex gap-2",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                             onClick: ()=>setIsAxonMode(false),
-                                            className: `px-4 py-2 rounded-md text-sm font-medium transition-colors ${!isAxonMode ? "bg-primary-200 text-dark-100" : "hover:bg-dark-200"}`,
+                                            className: `px-6 py-3 rounded-lg text-base font-semibold transition-colors ${!isAxonMode ? "bg-primary-200 text-dark-100 shadow-lg" : "hover:bg-dark-200 text-light-100"}`,
                                             children: "Phase 2: Dossier"
                                         }, void 0, false, {
                                             fileName: "[project]/components/InterviewStrategist.tsx",
-                                            lineNumber: 91,
+                                            lineNumber: 123,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                             onClick: ()=>window.location.href = '/axon',
-                                            className: "px-4 py-2 rounded-md text-sm font-medium transition-colors bg-primary-200 text-dark-100 hover:bg-primary-200/80",
+                                            className: "px-6 py-3 rounded-lg text-base font-semibold transition-colors bg-success-100 text-dark-100 hover:bg-success-100/80 shadow-lg",
                                             children: "Phase 1: AXON Live Practice"
                                         }, void 0, false, {
                                             fileName: "[project]/components/InterviewStrategist.tsx",
-                                            lineNumber: 101,
+                                            lineNumber: 133,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/InterviewStrategist.tsx",
-                                    lineNumber: 90,
+                                    lineNumber: 122,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/InterviewStrategist.tsx",
-                                lineNumber: 89,
+                                lineNumber: 121,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/InterviewStrategist.tsx",
-                            lineNumber: 88,
+                            lineNumber: 120,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/InterviewStrategist.tsx",
-                        lineNumber: 87,
+                        lineNumber: 119,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -217,7 +287,7 @@ function InterviewStrategist({ userName, userId }) {
                                         children: "Choose Your Phase:"
                                     }, void 0, false, {
                                         fileName: "[project]/components/InterviewStrategist.tsx",
-                                        lineNumber: 115,
+                                        lineNumber: 147,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -235,7 +305,7 @@ function InterviewStrategist({ userName, userId }) {
                                                                 children: "Phase 1: AXON Live Practice"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/InterviewStrategist.tsx",
-                                                                lineNumber: 120,
+                                                                lineNumber: 152,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -245,50 +315,50 @@ function InterviewStrategist({ userName, userId }) {
                                                                         children: "• Real-time voice interaction"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/InterviewStrategist.tsx",
-                                                                        lineNumber: 122,
+                                                                        lineNumber: 154,
                                                                         columnNumber: 25
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                                         children: "• Instant feedback on delivery"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/InterviewStrategist.tsx",
-                                                                        lineNumber: 123,
+                                                                        lineNumber: 155,
                                                                         columnNumber: 25
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                                         children: "• 15-30 minute sessions"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/InterviewStrategist.tsx",
-                                                                        lineNumber: 124,
+                                                                        lineNumber: 156,
                                                                         columnNumber: 25
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                                         children: "• Focus on communication skills"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/InterviewStrategist.tsx",
-                                                                        lineNumber: 125,
+                                                                        lineNumber: 157,
                                                                         columnNumber: 25
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/InterviewStrategist.tsx",
-                                                                lineNumber: 121,
+                                                                lineNumber: 153,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/InterviewStrategist.tsx",
-                                                        lineNumber: 119,
+                                                        lineNumber: 151,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/InterviewStrategist.tsx",
-                                                    lineNumber: 118,
+                                                    lineNumber: 150,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/InterviewStrategist.tsx",
-                                                lineNumber: 117,
+                                                lineNumber: 149,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -303,7 +373,7 @@ function InterviewStrategist({ userName, userId }) {
                                                                 children: "Phase 2: Strategic Dossier"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/InterviewStrategist.tsx",
-                                                                lineNumber: 133,
+                                                                lineNumber: 165,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -313,78 +383,78 @@ function InterviewStrategist({ userName, userId }) {
                                                                         children: "• Deep profile analysis"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/InterviewStrategist.tsx",
-                                                                        lineNumber: 135,
+                                                                        lineNumber: 167,
                                                                         columnNumber: 25
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                                         children: "• Comprehensive preparation"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/InterviewStrategist.tsx",
-                                                                        lineNumber: 136,
+                                                                        lineNumber: 168,
                                                                         columnNumber: 25
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                                         children: "• Tailored question sets"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/InterviewStrategist.tsx",
-                                                                        lineNumber: 137,
+                                                                        lineNumber: 169,
                                                                         columnNumber: 25
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                                                         children: "• Long-term strategy planning"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/InterviewStrategist.tsx",
-                                                                        lineNumber: 138,
+                                                                        lineNumber: 170,
                                                                         columnNumber: 25
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/InterviewStrategist.tsx",
-                                                                lineNumber: 134,
+                                                                lineNumber: 166,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/InterviewStrategist.tsx",
-                                                        lineNumber: 132,
+                                                        lineNumber: 164,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/InterviewStrategist.tsx",
-                                                    lineNumber: 131,
+                                                    lineNumber: 163,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/InterviewStrategist.tsx",
-                                                lineNumber: 130,
+                                                lineNumber: 162,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/InterviewStrategist.tsx",
-                                        lineNumber: 116,
+                                        lineNumber: 148,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/InterviewStrategist.tsx",
-                                lineNumber: 114,
+                                lineNumber: 146,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/InterviewStrategist.tsx",
-                            lineNumber: 113,
+                            lineNumber: 145,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/InterviewStrategist.tsx",
-                        lineNumber: 112,
+                        lineNumber: 144,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/InterviewStrategist.tsx",
-                lineNumber: 76,
+                lineNumber: 87,
                 columnNumber: 7
             }, this),
             !dossier ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -408,7 +478,7 @@ function InterviewStrategist({ userName, userId }) {
                                                     children: "Company Name *"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/InterviewStrategist.tsx",
-                                                    lineNumber: 156,
+                                                    lineNumber: 188,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -419,13 +489,13 @@ function InterviewStrategist({ userName, userId }) {
                                                     className: "input"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/InterviewStrategist.tsx",
-                                                    lineNumber: 157,
+                                                    lineNumber: 189,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/InterviewStrategist.tsx",
-                                            lineNumber: 155,
+                                            lineNumber: 187,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -437,7 +507,7 @@ function InterviewStrategist({ userName, userId }) {
                                                     children: "Your Concerns (Optional)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/InterviewStrategist.tsx",
-                                                    lineNumber: 166,
+                                                    lineNumber: 198,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -448,19 +518,19 @@ function InterviewStrategist({ userName, userId }) {
                                                     className: "input"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/InterviewStrategist.tsx",
-                                                    lineNumber: 167,
+                                                    lineNumber: 199,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/InterviewStrategist.tsx",
-                                            lineNumber: 165,
+                                            lineNumber: 197,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/InterviewStrategist.tsx",
-                                    lineNumber: 154,
+                                    lineNumber: 186,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -472,7 +542,7 @@ function InterviewStrategist({ userName, userId }) {
                                             children: "Job Description *"
                                         }, void 0, false, {
                                             fileName: "[project]/components/InterviewStrategist.tsx",
-                                            lineNumber: 178,
+                                            lineNumber: 210,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -483,13 +553,13 @@ function InterviewStrategist({ userName, userId }) {
                                             className: "input h-40 resize-vertical"
                                         }, void 0, false, {
                                             fileName: "[project]/components/InterviewStrategist.tsx",
-                                            lineNumber: 179,
+                                            lineNumber: 211,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/InterviewStrategist.tsx",
-                                    lineNumber: 177,
+                                    lineNumber: 209,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -501,7 +571,7 @@ function InterviewStrategist({ userName, userId }) {
                                             children: "Your Resume *"
                                         }, void 0, false, {
                                             fileName: "[project]/components/InterviewStrategist.tsx",
-                                            lineNumber: 189,
+                                            lineNumber: 221,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -512,13 +582,13 @@ function InterviewStrategist({ userName, userId }) {
                                             className: "input h-40 resize-vertical"
                                         }, void 0, false, {
                                             fileName: "[project]/components/InterviewStrategist.tsx",
-                                            lineNumber: 190,
+                                            lineNumber: 222,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/InterviewStrategist.tsx",
-                                    lineNumber: 188,
+                                    lineNumber: 220,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -528,7 +598,7 @@ function InterviewStrategist({ userName, userId }) {
                                     children: isGenerating ? isAxonMode ? "Generating AXON Briefing..." : "Generating Dossier..." : isAxonMode ? "Generate AXON Briefing" : "Generate Interview Dossier"
                                 }, void 0, false, {
                                     fileName: "[project]/components/InterviewStrategist.tsx",
-                                    lineNumber: 199,
+                                    lineNumber: 231,
                                     columnNumber: 17
                                 }, this),
                                 error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -542,43 +612,43 @@ function InterviewStrategist({ userName, userId }) {
                                                 children: error
                                             }, void 0, false, {
                                                 fileName: "[project]/components/InterviewStrategist.tsx",
-                                                lineNumber: 214,
+                                                lineNumber: 246,
                                                 columnNumber: 25
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/InterviewStrategist.tsx",
-                                            lineNumber: 213,
+                                            lineNumber: 245,
                                             columnNumber: 23
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/InterviewStrategist.tsx",
-                                        lineNumber: 212,
+                                        lineNumber: 244,
                                         columnNumber: 21
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/InterviewStrategist.tsx",
-                                    lineNumber: 211,
+                                    lineNumber: 243,
                                     columnNumber: 19
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/InterviewStrategist.tsx",
-                            lineNumber: 153,
+                            lineNumber: 185,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/InterviewStrategist.tsx",
-                        lineNumber: 152,
+                        lineNumber: 184,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/InterviewStrategist.tsx",
-                    lineNumber: 151,
+                    lineNumber: 183,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/InterviewStrategist.tsx",
-                lineNumber: 150,
+                lineNumber: 182,
                 columnNumber: 9
             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "space-y-6",
@@ -591,7 +661,7 @@ function InterviewStrategist({ userName, userId }) {
                                 children: isAxonMode ? "AXON Interview Briefing" : "Your Interview Dossier"
                             }, void 0, false, {
                                 fileName: "[project]/components/InterviewStrategist.tsx",
-                                lineNumber: 226,
+                                lineNumber: 258,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -601,13 +671,13 @@ function InterviewStrategist({ userName, userId }) {
                                 children: "Copy to Clipboard"
                             }, void 0, false, {
                                 fileName: "[project]/components/InterviewStrategist.tsx",
-                                lineNumber: 229,
+                                lineNumber: 261,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/InterviewStrategist.tsx",
-                        lineNumber: 225,
+                        lineNumber: 257,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -622,7 +692,7 @@ function InterviewStrategist({ userName, userId }) {
                                         children: dossier || "No content to display"
                                     }, void 0, false, {
                                         fileName: "[project]/components/InterviewStrategist.tsx",
-                                        lineNumber: 237,
+                                        lineNumber: 269,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -634,23 +704,23 @@ function InterviewStrategist({ userName, userId }) {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/InterviewStrategist.tsx",
-                                        lineNumber: 240,
+                                        lineNumber: 272,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/InterviewStrategist.tsx",
-                                lineNumber: 236,
+                                lineNumber: 268,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/InterviewStrategist.tsx",
-                            lineNumber: 235,
+                            lineNumber: 267,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/InterviewStrategist.tsx",
-                        lineNumber: 234,
+                        lineNumber: 266,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -669,19 +739,19 @@ function InterviewStrategist({ userName, userId }) {
                         children: isAxonMode ? "Generate New Briefing" : "Generate New Dossier"
                     }, void 0, false, {
                         fileName: "[project]/components/InterviewStrategist.tsx",
-                        lineNumber: 247,
+                        lineNumber: 279,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/InterviewStrategist.tsx",
-                lineNumber: 224,
+                lineNumber: 256,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/InterviewStrategist.tsx",
-        lineNumber: 75,
+        lineNumber: 86,
         columnNumber: 5
     }, this);
 }

@@ -142,24 +142,19 @@ var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
 ;
 async function getUidFromRequest(req) {
     const authHeader = req.headers.get("authorization");
-    console.log("Auth header:", authHeader ? "Present" : "Missing");
     if (!authHeader) return null;
     const token = authHeader.split(" ")[1];
-    console.log("Token extracted:", token ? "Present" : "Missing");
     if (!token) return null;
     try {
         const decoded = await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["auth"].verifyIdToken(token);
-        console.log("Token decoded successfully, UID:", decoded.uid);
         return decoded.uid;
     } catch (error) {
-        console.error("Token verification failed:", error);
         return null;
     }
 }
 async function POST(req) {
     try {
         const uid = await getUidFromRequest(req);
-        console.log("POST /api/user/skills - UID:", uid);
         if (!uid) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 error: "Unauthorized"
@@ -168,10 +163,6 @@ async function POST(req) {
             });
         }
         const { skill, domain } = await req.json();
-        console.log("POST /api/user/skills - Data:", {
-            skill,
-            domain
-        });
         if (!skill || typeof skill !== "string" || !domain) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 error: "Invalid skill or domain"
@@ -183,10 +174,8 @@ async function POST(req) {
             name: skill,
             domain
         };
-        console.log("POST /api/user/skills - Skill object:", skillObj);
         const userRef = __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].collection("users").doc(uid);
         const userDoc = await userRef.get();
-        console.log("POST /api/user/skills - User exists:", userDoc.exists);
         if (!userDoc.exists) {
             await userRef.set({
                 skills: [
@@ -195,21 +184,18 @@ async function POST(req) {
             }, {
                 merge: true
             });
-            console.log("POST /api/user/skills - Created new user with skills");
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 success: true,
                 created: true
             });
         } else {
             const data = userDoc.data();
-            console.log("POST /api/user/skills - Existing skills:", data?.skills);
             if (!Array.isArray(data?.skills)) {
                 await userRef.update({
                     skills: [
                         skillObj
                     ]
                 });
-                console.log("POST /api/user/skills - Initialized skills array");
                 return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                     success: true,
                     initialized: true
@@ -218,13 +204,11 @@ async function POST(req) {
             await userRef.update({
                 skills: __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2d$admin$2f$firestore__$5b$external$5d$__$28$firebase$2d$admin$2f$firestore$2c$__esm_import$29$__["FieldValue"].arrayUnion(skillObj)
             });
-            console.log("POST /api/user/skills - Added skill to existing array");
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 success: true
             });
         }
     } catch (error) {
-        console.error("Error adding skill:", error);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             error: "Failed to add skill",
             details: String(error)
@@ -263,7 +247,6 @@ async function DELETE(req) {
             success: true
         });
     } catch (error) {
-        console.error("Error removing skill:", error);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             error: "Failed to remove skill",
             details: String(error)
@@ -275,7 +258,6 @@ async function DELETE(req) {
 async function GET(req) {
     try {
         const uid = await getUidFromRequest(req);
-        console.log("GET /api/user/skills - UID:", uid);
         if (!uid) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 error: "Unauthorized"
@@ -285,21 +267,16 @@ async function GET(req) {
         }
         const userRef = __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].collection("users").doc(uid);
         const userDoc = await userRef.get();
-        console.log("GET /api/user/skills - User exists:", userDoc.exists);
         if (!userDoc.exists) {
-            console.log("GET /api/user/skills - No user document, returning empty skills");
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 skills: []
             });
         }
         const data = userDoc.data();
-        console.log("GET /api/user/skills - User data:", data);
-        console.log("GET /api/user/skills - Skills:", data?.skills);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             skills: data?.skills || []
         });
     } catch (error) {
-        console.error("Error fetching skills:", error);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             error: "Failed to fetch skills"
         }, {
