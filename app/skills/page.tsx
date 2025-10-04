@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { useAuth } from "@/context/AuthContext";
 import { getAuth } from "firebase/auth";
 import Link from "next/link";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 interface Skill {
   name: string;
@@ -183,7 +184,8 @@ export default function SkillsPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-8">
+    <ProtectedRoute>
+      <div className="max-w-4xl mx-auto p-8">
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">My Skills</h1>
         <p className="text-gray-600">
@@ -359,6 +361,7 @@ export default function SkillsPage() {
           </Button>
         </div>
       )}
-    </div>
+      </div>
+    </ProtectedRoute>
   );
 }

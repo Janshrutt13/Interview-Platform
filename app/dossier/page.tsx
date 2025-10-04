@@ -1,19 +1,20 @@
+"use client";
 import InterviewStrategist from "@/components/InterviewStrategist";
-import {getCurrentUser} from "@/lib/actions/auth.action";
-import {redirect} from "next/navigation";
+import ProtectedRoute from "@/components/ProtectedRoute";
+import { useAuth } from "@/context/AuthContext";
 
-const page = async () => {
-    const user = await getCurrentUser();
-
-    if (!user?.name || !user?.id) {
-        redirect("/login");
-    }
+const page = () => {
+    const { currentUser } = useAuth();
 
     return (
-        <InterviewStrategist
-            userName={user?.name}
-            userId={user?.id}
-        />
+        <ProtectedRoute>
+            {currentUser && (
+                <InterviewStrategist
+                    userName={currentUser.displayName || currentUser.email || "User"}
+                    userId={currentUser.uid}
+                />
+            )}
+        </ProtectedRoute>
     );
 };
 

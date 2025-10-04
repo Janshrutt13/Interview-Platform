@@ -13,7 +13,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
 
   useEffect(() => {
     if (!loading && !currentUser) {
-      router.replace("/login");
+      router.replace("/sign-in");
     }
   }, [loading, currentUser, router]);
 

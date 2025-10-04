@@ -35,10 +35,10 @@ __turbopack_async_result__();
 return __turbopack_context__.a(async (__turbopack_handle_async_dependencies__, __turbopack_async_result__) => { try {
 
 __turbopack_context__.s([
+    "adminDb",
+    ()=>adminDb,
     "auth",
-    ()=>auth,
-    "db",
-    ()=>db
+    ()=>auth
 ]);
 var __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2d$admin$2f$app__$5b$external$5d$__$28$firebase$2d$admin$2f$app$2c$__esm_import$29$__ = __turbopack_context__.i("[externals]/firebase-admin/app [external] (firebase-admin/app, esm_import)");
 var __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2d$admin$2f$auth__$5b$external$5d$__$28$firebase$2d$admin$2f$auth$2c$__esm_import$29$__ = __turbopack_context__.i("[externals]/firebase-admin/auth [external] (firebase-admin/auth, esm_import)");
@@ -68,7 +68,7 @@ const initFirebaseAdmin = ()=>{
         db: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2d$admin$2f$firestore__$5b$external$5d$__$28$firebase$2d$admin$2f$firestore$2c$__esm_import$29$__["getFirestore"])()
     };
 };
-const { db, auth } = initFirebaseAdmin();
+const { db: adminDb, auth } = initFirebaseAdmin();
 __turbopack_async_result__();
 } catch(e) { __turbopack_async_result__(e); } }, false);}),
 "[project]/lib/actions/axon.action.ts [app-rsc] (ecmascript)", ((__turbopack_context__) => {
@@ -143,7 +143,7 @@ Example format: ["Tell me about yourself", "Describe a challenging project you w
             status: "active",
             responses: []
         };
-        await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["db"].collection("axon_sessions").doc(sessionId).set(sessionData);
+        await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["adminDb"].collection("axon_sessions").doc(sessionId).set(sessionData);
         return {
             success: true,
             session: {
@@ -165,7 +165,7 @@ Example format: ["Tell me about yourself", "Describe a challenging project you w
 async function getInstantFeedback(params) {
     const { sessionId, questionIndex, textAnswer, audioBlob } = params;
     try {
-        const sessionDoc = await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["db"].collection("axon_sessions").doc(sessionId).get();
+        const sessionDoc = await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["adminDb"].collection("axon_sessions").doc(sessionId).get();
         if (!sessionDoc.exists) {
             return {
                 success: false,
@@ -242,7 +242,7 @@ If the answer contains random keywords or doesn't make sense, give LOW rating an
             };
         }
         // Save the response with feedback
-        await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["db"].collection("axon_sessions").doc(sessionId).update({
+        await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["adminDb"].collection("axon_sessions").doc(sessionId).update({
             responses: [
                 ...sessionData?.responses || [],
                 {
@@ -268,7 +268,7 @@ If the answer contains random keywords or doesn't make sense, give LOW rating an
 async function endAxonSession(params) {
     const { sessionId, userId } = params;
     try {
-        const sessionDoc = await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["db"].collection("axon_sessions").doc(sessionId).get();
+        const sessionDoc = await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["adminDb"].collection("axon_sessions").doc(sessionId).get();
         if (!sessionDoc.exists) {
             return {
                 success: false,
@@ -296,7 +296,7 @@ Provide a brief summary of:
 3. Areas for improvement
 4. Recommendation for next steps`
         });
-        await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["db"].collection("axon_sessions").doc(sessionId).update({
+        await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["adminDb"].collection("axon_sessions").doc(sessionId).update({
             status: "completed",
             endTime: new Date(),
             summary: summaryText
@@ -316,7 +316,7 @@ Provide a brief summary of:
 async function getNextQuestion(params) {
     const { sessionId, currentIndex } = params;
     try {
-        const sessionDoc = await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["db"].collection("axon_sessions").doc(sessionId).get();
+        const sessionDoc = await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["adminDb"].collection("axon_sessions").doc(sessionId).get();
         if (!sessionDoc.exists) {
             return {
                 success: false,
@@ -331,7 +331,7 @@ async function getNextQuestion(params) {
                 isComplete: true
             };
         }
-        await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["db"].collection("axon_sessions").doc(sessionId).update({
+        await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["adminDb"].collection("axon_sessions").doc(sessionId).update({
             currentQuestionIndex: nextIndex
         });
         return {
@@ -350,7 +350,7 @@ async function getNextQuestion(params) {
 }
 async function getAxonSessionHistory(userId) {
     try {
-        const sessionsQuery = await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["db"].collection("axon_sessions").where("userId", "==", userId).orderBy("startTime", "desc").limit(10).get();
+        const sessionsQuery = await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["adminDb"].collection("axon_sessions").where("userId", "==", userId).orderBy("startTime", "desc").limit(10).get();
         const sessions = sessionsQuery.docs.map((doc)=>{
             const data = doc.data();
             return {

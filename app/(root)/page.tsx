@@ -6,6 +6,7 @@ import Chatbot from "@/components/Chatbot";
 import PhaseComparison from "@/components/PhaseComparison";
 import {getCurrentUser} from "@/lib/actions/auth.action";
 import Beams from "@/components/Beams";
+import Carousel from "@/components/Carousel";
 
 
 async function Home() {
@@ -56,21 +57,39 @@ async function Home() {
                 </section>
 
 
-
-                <section className="flex flex-col gap-6 mt-8 bg-white/3 backdrop-blur-sm border border-white/10 p-8 rounded-2xl mx-16 max-sm:mx-4">
-                    <h2 className="text-white text-3xl font-bold">How It Works</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div className="bg-white/5 backdrop-blur-sm border border-white/15 p-6 rounded-2xl">
-                            <h3 className="text-xl font-semibold mb-3 text-white">1. Input Your Data</h3>
-                            <p className="text-white/80">Provide your resume, the job description, company name, and any specific concerns you have about the interview.</p>
-                        </div>
-                        <div className="bg-white/5 backdrop-blur-sm border border-white/15 p-6 rounded-2xl">
-                            <h3 className="text-xl font-semibold mb-3 text-white">2. AI Analysis</h3>
-                            <p className="text-white/80">Our AI analyzes your qualifications against the job requirements and identifies your key selling points.</p>
-                        </div>
-                        <div className="bg-white/5 backdrop-blur-sm border border-white/15 p-6 rounded-2xl">
-                            <h3 className="text-xl font-semibold mb-3 text-white">3. Get Your Dossier</h3>
-                            <p className="text-white/80">Receive a comprehensive interview dossier with strategic questions, gap analysis, and closing statements.</p>
+                {/* Carousel */}
+                <section className="flex flex-col gap-6 mt-8 mx-16 max-sm:mx-4">
+                    <h2 className="text-white text-3xl font-bold text-center">How It Works</h2>
+                    <div className="flex justify-center">
+                        <div style={{ height: '500px', position: 'relative' }}>
+                            <Carousel
+                                items={[
+                                    {
+                                        title: '1. Input Your Data',
+                                        description: 'Provide your resume, the job description, company name, and any specific concerns you have about the interview.',
+                                        id: 1,
+                                        icon: <span className="text-white text-lg">📝</span>
+                                    },
+                                    {
+                                        title: '2. AI Analysis',
+                                        description: 'Our AI analyzes your qualifications against the job requirements and identifies your key selling points.',
+                                        id: 2,
+                                        icon: <span className="text-white text-lg">🤖</span>
+                                    },
+                                    {
+                                        title: '3. Get Your Dossier',
+                                        description: 'Receive a comprehensive interview dossier with strategic questions, gap analysis, and closing statements.',
+                                        id: 3,
+                                        icon: <span className="text-white text-lg">📊</span>
+                                    }
+                                ]}
+                                baseWidth={500}
+                                autoplay={true}
+                                autoplayDelay={4000}
+                                pauseOnHover={true}
+                                loop={true}
+                                round={false}
+                            />
                         </div>
                     </div>
                 </section>

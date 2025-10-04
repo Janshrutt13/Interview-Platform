@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 interface Recommendation {
   courses: Array<{
@@ -108,7 +109,8 @@ export default function RecommendationsPage() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto p-8">
+    <ProtectedRoute>
+      <div className="max-w-6xl mx-auto p-8">
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Learning Recommendations</h1>
         <p className="text-gray-600 mb-4">
@@ -223,6 +225,7 @@ export default function RecommendationsPage() {
           </section>
         </div>
       )}
-    </div>
+      </div>
+    </ProtectedRoute>
   );
 }
