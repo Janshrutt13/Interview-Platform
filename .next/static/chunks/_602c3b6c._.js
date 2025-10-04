@@ -803,7 +803,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$motion$2d$value$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/value/use-motion-value.mjs [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/value/use-transform.mjs [app-client] (ecmascript)");
 // replace icons with your own if needed
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fi$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/react-icons/fi/index.mjs [app-client] (ecmascript)");
 ;
@@ -885,7 +884,6 @@ const SPRING_OPTIONS = {
 function Carousel(param) {
     let { items = DEFAULT_ITEMS, baseWidth = 300, autoplay = false, autoplayDelay = 3000, pauseOnHover = false, loop = false, round = false } = param;
     _s();
-    var _s1 = __turbopack_context__.k.signature();
     const containerPadding = 16;
     const itemWidth = baseWidth - containerPadding * 2;
     const trackItemOffset = itemWidth + GAP;
@@ -921,37 +919,30 @@ function Carousel(param) {
     }["Carousel.useEffect"], [
         pauseOnHover
     ]);
+    const autoAdvance = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "Carousel.useCallback[autoAdvance]": ()=>{
+            setCurrentIndex({
+                "Carousel.useCallback[autoAdvance]": (prev)=>(prev + 1) % items.length
+            }["Carousel.useCallback[autoAdvance]"]);
+        }
+    }["Carousel.useCallback[autoAdvance]"], [
+        items.length
+    ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Carousel.useEffect": ()=>{
-            if (autoplay && (!pauseOnHover || !isHovered)) {
-                const timer = setInterval({
-                    "Carousel.useEffect.timer": ()=>{
-                        setCurrentIndex({
-                            "Carousel.useEffect.timer": (prev)=>{
-                                if (prev === items.length - 1 && loop) {
-                                    return prev + 1;
-                                }
-                                if (prev === carouselItems.length - 1) {
-                                    return loop ? 0 : prev;
-                                }
-                                return prev + 1;
-                            }
-                        }["Carousel.useEffect.timer"]);
-                    }
-                }["Carousel.useEffect.timer"], autoplayDelay);
-                return ({
-                    "Carousel.useEffect": ()=>clearInterval(timer)
-                })["Carousel.useEffect"];
-            }
+            if (!autoplay) return;
+            if (pauseOnHover && isHovered) return;
+            const timer = setInterval(autoAdvance, autoplayDelay);
+            return ({
+                "Carousel.useEffect": ()=>clearInterval(timer)
+            })["Carousel.useEffect"];
         }
     }["Carousel.useEffect"], [
         autoplay,
         autoplayDelay,
         isHovered,
-        loop,
-        items.length,
-        carouselItems.length,
-        pauseOnHover
+        pauseOnHover,
+        autoAdvance
     ]);
     const effectiveTransition = isResetting ? {
         duration: 0
@@ -989,150 +980,220 @@ function Carousel(param) {
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         ref: containerRef,
-        className: "relative overflow-hidden p-4 ".concat(round ? 'rounded-full border border-white' : 'rounded-[24px] border border-[#222]'),
+        className: "relative w-full h-full flex items-center justify-center overflow-visible",
         style: {
             width: "".concat(baseWidth, "px"),
-            ...round && {
-                height: "".concat(baseWidth, "px")
-            }
+            height: '400px'
         },
         children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                className: "flex",
-                drag: "x",
-                ...dragProps,
-                style: {
-                    width: itemWidth,
-                    gap: "".concat(GAP, "px"),
-                    perspective: 1000,
-                    perspectiveOrigin: "".concat(currentIndex * trackItemOffset + itemWidth / 2, "px 50%"),
-                    x
-                },
-                onDragEnd: handleDragEnd,
-                animate: {
-                    x: -(currentIndex * trackItemOffset)
-                },
-                transition: effectiveTransition,
-                onAnimationComplete: handleAnimationComplete,
-                children: carouselItems.map(_s1((item, index)=>{
-                    _s1();
-                    const range = [
-                        -(index + 1) * trackItemOffset,
-                        -index * trackItemOffset,
-                        -(index - 1) * trackItemOffset
-                    ];
-                    const outputRange = [
-                        90,
-                        0,
-                        -90
-                    ];
-                    const rotateY = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTransform"])(x, range, outputRange, {
-                        clamp: false
-                    });
-                    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                        className: "relative shrink-0 flex flex-col ".concat(round ? 'items-center justify-center text-center bg-[#060010] border-0' : 'items-start justify-between bg-[#222] border border-[#222] rounded-[12px]', " overflow-hidden cursor-grab active:cursor-grabbing"),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex items-center justify-center gap-8",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                        className: "relative flex flex-col items-center justify-center bg-gradient-to-br from-purple-900/20 to-black/40 border border-purple-500/20 rounded-2xl p-6 cursor-pointer",
                         style: {
-                            width: itemWidth,
-                            height: round ? itemWidth : '100%',
-                            rotateY: rotateY,
-                            ...round && {
-                                borderRadius: '50%'
-                            }
+                            width: '200px',
+                            height: '280px'
                         },
-                        transition: effectiveTransition,
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "".concat(round ? 'p-0 m-0' : 'mb-4 p-5'),
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    className: "flex h-[28px] w-[28px] items-center justify-center rounded-full bg-[#060010]",
-                                    children: item.icon
+                        animate: {
+                            opacity: 0.6,
+                            scale: 0.85,
+                            rotateY: -15
+                        },
+                        transition: {
+                            duration: 0.5,
+                            ease: "easeInOut"
+                        },
+                        onClick: ()=>setCurrentIndex((prev)=>(prev - 1 + items.length) % items.length),
+                        children: items[(currentIndex - 1 + items.length) % items.length] && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "text-4xl mb-4",
+                                    children: items[(currentIndex - 1 + items.length) % items.length].icon
+                                }, void 0, false, {
+                                    fileName: "[project]/components/Carousel.tsx",
+                                    lineNumber: 165,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "text-purple-300 text-2xl font-bold mb-2",
+                                    children: (currentIndex - 1 + items.length) % items.length + 1
+                                }, void 0, false, {
+                                    fileName: "[project]/components/Carousel.tsx",
+                                    lineNumber: 166,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                    className: "text-white text-lg font-semibold text-center mb-2",
+                                    children: items[(currentIndex - 1 + items.length) % items.length].title
+                                }, void 0, false, {
+                                    fileName: "[project]/components/Carousel.tsx",
+                                    lineNumber: 167,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "text-gray-300 text-sm text-center",
+                                    children: items[(currentIndex - 1 + items.length) % items.length].description
+                                }, void 0, false, {
+                                    fileName: "[project]/components/Carousel.tsx",
+                                    lineNumber: 168,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true)
+                    }, void 0, false, {
+                        fileName: "[project]/components/Carousel.tsx",
+                        lineNumber: 156,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                        className: "relative flex flex-col items-center justify-center bg-gradient-to-br from-purple-800/30 to-black/60 border border-purple-400/30 rounded-2xl p-8 shadow-2xl",
+                        style: {
+                            width: '280px',
+                            height: '350px'
+                        },
+                        animate: {
+                            scale: 1,
+                            opacity: 1,
+                            rotateY: 0
+                        },
+                        transition: {
+                            duration: 0.5,
+                            ease: "easeInOut"
+                        },
+                        children: items[currentIndex] && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "text-5xl mb-6",
+                                    children: items[currentIndex].icon
+                                }, void 0, false, {
+                                    fileName: "[project]/components/Carousel.tsx",
+                                    lineNumber: 182,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "text-purple-200 text-3xl font-bold mb-4",
+                                    children: currentIndex + 1
+                                }, void 0, false, {
+                                    fileName: "[project]/components/Carousel.tsx",
+                                    lineNumber: 183,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                    className: "text-white text-xl font-bold text-center mb-4",
+                                    children: items[currentIndex].title
+                                }, void 0, false, {
+                                    fileName: "[project]/components/Carousel.tsx",
+                                    lineNumber: 184,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "text-gray-200 text-center",
+                                    children: items[currentIndex].description
+                                }, void 0, false, {
+                                    fileName: "[project]/components/Carousel.tsx",
+                                    lineNumber: 185,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true)
+                    }, void 0, false, {
+                        fileName: "[project]/components/Carousel.tsx",
+                        lineNumber: 174,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                        className: "relative flex flex-col items-center justify-center bg-gradient-to-br from-purple-900/20 to-black/40 border border-purple-500/20 rounded-2xl p-6 cursor-pointer",
+                        style: {
+                            width: '200px',
+                            height: '280px'
+                        },
+                        animate: {
+                            opacity: 0.6,
+                            scale: 0.85,
+                            rotateY: 15
+                        },
+                        transition: {
+                            duration: 0.5,
+                            ease: "easeInOut"
+                        },
+                        onClick: ()=>setCurrentIndex((prev)=>(prev + 1) % items.length),
+                        children: items[(currentIndex + 1) % items.length] && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "text-4xl mb-4",
+                                    children: items[(currentIndex + 1) % items.length].icon
+                                }, void 0, false, {
+                                    fileName: "[project]/components/Carousel.tsx",
+                                    lineNumber: 200,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "text-purple-300 text-2xl font-bold mb-2",
+                                    children: (currentIndex + 1) % items.length + 1
                                 }, void 0, false, {
                                     fileName: "[project]/components/Carousel.tsx",
                                     lineNumber: 201,
-                                    columnNumber: 17
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                    className: "text-white text-lg font-semibold text-center mb-2",
+                                    children: items[(currentIndex + 1) % items.length].title
+                                }, void 0, false, {
+                                    fileName: "[project]/components/Carousel.tsx",
+                                    lineNumber: 202,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "text-gray-300 text-sm text-center",
+                                    children: items[(currentIndex + 1) % items.length].description
+                                }, void 0, false, {
+                                    fileName: "[project]/components/Carousel.tsx",
+                                    lineNumber: 203,
+                                    columnNumber: 15
                                 }, this)
-                            }, void 0, false, {
-                                fileName: "[project]/components/Carousel.tsx",
-                                lineNumber: 200,
-                                columnNumber: 15
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "p-5",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "mb-1 font-black text-lg text-white",
-                                        children: item.title
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/Carousel.tsx",
-                                        lineNumber: 206,
-                                        columnNumber: 17
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-sm text-white",
-                                        children: item.description
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/Carousel.tsx",
-                                        lineNumber: 207,
-                                        columnNumber: 17
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/Carousel.tsx",
-                                lineNumber: 205,
-                                columnNumber: 15
-                            }, this)
-                        ]
-                    }, index, true, {
+                            ]
+                        }, void 0, true)
+                    }, void 0, false, {
                         fileName: "[project]/components/Carousel.tsx",
-                        lineNumber: 185,
-                        columnNumber: 13
-                    }, this);
-                }, "pXZtAW9aKuqtt+0qnXrKkhOs9tU=", false, function() {
-                    return [
-                        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTransform"]
-                    ];
-                }))
-            }, void 0, false, {
+                        lineNumber: 191,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
                 fileName: "[project]/components/Carousel.tsx",
-                lineNumber: 164,
+                lineNumber: 154,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex w-full justify-center ".concat(round ? 'absolute z-20 bottom-12 left-1/2 -translate-x-1/2' : ''),
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "mt-4 flex w-[150px] justify-between px-8",
-                    children: items.map((_, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                            className: "h-2 w-2 rounded-full cursor-pointer transition-colors duration-150 ".concat(currentIndex % items.length === index ? round ? 'bg-white' : 'bg-[#333333]' : round ? 'bg-[#555]' : 'bg-[rgba(51,51,51,0.4)]'),
-                            animate: {
-                                scale: currentIndex % items.length === index ? 1.2 : 1
-                            },
-                            onClick: ()=>setCurrentIndex(index),
-                            transition: {
-                                duration: 0.15
-                            }
-                        }, index, false, {
-                            fileName: "[project]/components/Carousel.tsx",
-                            lineNumber: 216,
-                            columnNumber: 13
-                        }, this))
-                }, void 0, false, {
-                    fileName: "[project]/components/Carousel.tsx",
-                    lineNumber: 214,
-                    columnNumber: 9
-                }, this)
+                className: "absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2",
+                children: items.map((_, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                        className: "h-2 w-2 rounded-full cursor-pointer transition-colors duration-300 ".concat(currentIndex === index ? 'bg-purple-400' : 'bg-purple-800/40'),
+                        animate: {
+                            scale: currentIndex === index ? 1.3 : 1
+                        },
+                        onClick: ()=>setCurrentIndex(index),
+                        transition: {
+                            duration: 0.2
+                        }
+                    }, index, false, {
+                        fileName: "[project]/components/Carousel.tsx",
+                        lineNumber: 210,
+                        columnNumber: 11
+                    }, this))
             }, void 0, false, {
                 fileName: "[project]/components/Carousel.tsx",
-                lineNumber: 213,
+                lineNumber: 208,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/Carousel.tsx",
-        lineNumber: 154,
+        lineNumber: 149,
         columnNumber: 5
     }, this);
 }
-_s(Carousel, "NbJIdg11FEuHmvMUn2ezlYKwxog=", false, function() {
+_s(Carousel, "lnfIpB7WyZAilq2+oSEJj8RnhnU=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$motion$2d$value$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMotionValue"]
     ];

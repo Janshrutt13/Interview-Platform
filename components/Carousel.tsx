@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { motion, PanInfo, useMotionValue, useTransform } from 'motion/react';
 import React, { JSX } from 'react';
 
@@ -95,22 +95,17 @@ export default function Carousel({
     }
   }, [pauseOnHover]);
 
+  const autoAdvance = useCallback(() => {
+    setCurrentIndex(prev => (prev + 1) % items.length);
+  }, [items.length]);
+
   useEffect(() => {
-    if (autoplay && (!pauseOnHover || !isHovered)) {
-      const timer = setInterval(() => {
-        setCurrentIndex(prev => {
-          if (prev === items.length - 1 && loop) {
-            return prev + 1;
-          }
-          if (prev === carouselItems.length - 1) {
-            return loop ? 0 : prev;
-          }
-          return prev + 1;
-        });
-      }, autoplayDelay);
-      return () => clearInterval(timer);
-    }
-  }, [autoplay, autoplayDelay, isHovered, loop, items.length, carouselItems.length, pauseOnHover]);
+    if (!autoplay) return;
+    if (pauseOnHover && isHovered) return;
+    
+    const timer = setInterval(autoAdvance, autoplayDelay);
+    return () => clearInterval(timer);
+  }, [autoplay, autoplayDelay, isHovered, pauseOnHover, autoAdvance]);
 
   const effectiveTransition = isResetting ? { duration: 0 } : SPRING_OPTIONS;
 
@@ -153,85 +148,75 @@ export default function Carousel({
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden p-4 ${
-        round ? 'rounded-full border border-white' : 'rounded-[24px] border border-[#222]'
-      }`}
-      style={{
-        width: `${baseWidth}px`,
-        ...(round && { height: `${baseWidth}px` })
-      }}
+      className="relative w-full h-full flex items-center justify-center overflow-visible"
+      style={{ width: `${baseWidth}px`, height: '400px' }}
     >
-      <motion.div
-        className="flex"
-        drag="x"
-        {...dragProps}
-        style={{
-          width: itemWidth,
-          gap: `${GAP}px`,
-          perspective: 1000,
-          perspectiveOrigin: `${currentIndex * trackItemOffset + itemWidth / 2}px 50%`,
-          x
-        }}
-        onDragEnd={handleDragEnd}
-        animate={{ x: -(currentIndex * trackItemOffset) }}
-        transition={effectiveTransition}
-        onAnimationComplete={handleAnimationComplete}
-      >
-        {carouselItems.map((item, index) => {
-          const range = [-(index + 1) * trackItemOffset, -index * trackItemOffset, -(index - 1) * trackItemOffset];
-          const outputRange = [90, 0, -90];
-          const rotateY = useTransform(x, range, outputRange, { clamp: false });
-          return (
-            <motion.div
-              key={index}
-              className={`relative shrink-0 flex flex-col ${
-                round
-                  ? 'items-center justify-center text-center bg-[#060010] border-0'
-                  : 'items-start justify-between bg-[#222] border border-[#222] rounded-[12px]'
-              } overflow-hidden cursor-grab active:cursor-grabbing`}
-              style={{
-                width: itemWidth,
-                height: round ? itemWidth : '100%',
-                rotateY: rotateY,
-                ...(round && { borderRadius: '50%' })
-              }}
-              transition={effectiveTransition as any}
-            >
-              <div className={`${round ? 'p-0 m-0' : 'mb-4 p-5'}`}>
-                <span className="flex h-[28px] w-[28px] items-center justify-center rounded-full bg-[#060010]">
-                  {item.icon}
-                </span>
-              </div>
-              <div className="p-5">
-                <div className="mb-1 font-black text-lg text-white">{item.title}</div>
-                <p className="text-sm text-white">{item.description}</p>
-              </div>
-            </motion.div>
-          );
-        })}
-      </motion.div>
-      <div className={`flex w-full justify-center ${round ? 'absolute z-20 bottom-12 left-1/2 -translate-x-1/2' : ''}`}>
-        <div className="mt-4 flex w-[150px] justify-between px-8">
-          {items.map((_, index) => (
-            <motion.div
-              key={index}
-              className={`h-2 w-2 rounded-full cursor-pointer transition-colors duration-150 ${
-                currentIndex % items.length === index
-                  ? round
-                    ? 'bg-white'
-                    : 'bg-[#333333]'
-                  : round
-                    ? 'bg-[#555]'
-                    : 'bg-[rgba(51,51,51,0.4)]'
-              }`}
-              animate={{
-                scale: currentIndex % items.length === index ? 1.2 : 1
-              }}
-              onClick={() => setCurrentIndex(index)}
-              transition={{ duration: 0.15 }}
-            />
-          ))}
-        </div>
+      <div className="flex items-center justify-center gap-8">
+        {/* Previous card */}
+        <motion.div
+          className="relative flex flex-col items-center justify-center bg-gradient-to-br from-purple-900/20 to-black/40 border border-purple-500/20 rounded-2xl p-6 cursor-pointer"
+          style={{ width: '200px', height: '280px' }}
+          animate={{ opacity: 0.6, scale: 0.85, rotateY: -15 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          onClick={() => setCurrentIndex(prev => (prev - 1 + items.length) % items.length)}
+        >
+          {items[(currentIndex - 1 + items.length) % items.length] && (
+            <>
+              <div className="text-4xl mb-4">{items[(currentIndex - 1 + items.length) % items.length].icon}</div>
+              <div className="text-purple-300 text-2xl font-bold mb-2">{(currentIndex - 1 + items.length) % items.length + 1}</div>
+              <h3 className="text-white text-lg font-semibold text-center mb-2">{items[(currentIndex - 1 + items.length) % items.length].title}</h3>
+              <p className="text-gray-300 text-sm text-center">{items[(currentIndex - 1 + items.length) % items.length].description}</p>
+            </>
+          )}
+        </motion.div>
+
+        {/* Current card */}
+        <motion.div
+          className="relative flex flex-col items-center justify-center bg-gradient-to-br from-purple-800/30 to-black/60 border border-purple-400/30 rounded-2xl p-8 shadow-2xl"
+          style={{ width: '280px', height: '350px' }}
+          animate={{ scale: 1, opacity: 1, rotateY: 0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
+          {items[currentIndex] && (
+            <>
+              <div className="text-5xl mb-6">{items[currentIndex].icon}</div>
+              <div className="text-purple-200 text-3xl font-bold mb-4">{currentIndex + 1}</div>
+              <h3 className="text-white text-xl font-bold text-center mb-4">{items[currentIndex].title}</h3>
+              <p className="text-gray-200 text-center">{items[currentIndex].description}</p>
+            </>
+          )}
+        </motion.div>
+
+        {/* Next card */}
+        <motion.div
+          className="relative flex flex-col items-center justify-center bg-gradient-to-br from-purple-900/20 to-black/40 border border-purple-500/20 rounded-2xl p-6 cursor-pointer"
+          style={{ width: '200px', height: '280px' }}
+          animate={{ opacity: 0.6, scale: 0.85, rotateY: 15 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          onClick={() => setCurrentIndex(prev => (prev + 1) % items.length)}
+        >
+          {items[(currentIndex + 1) % items.length] && (
+            <>
+              <div className="text-4xl mb-4">{items[(currentIndex + 1) % items.length].icon}</div>
+              <div className="text-purple-300 text-2xl font-bold mb-2">{(currentIndex + 1) % items.length + 1}</div>
+              <h3 className="text-white text-lg font-semibold text-center mb-2">{items[(currentIndex + 1) % items.length].title}</h3>
+              <p className="text-gray-300 text-sm text-center">{items[(currentIndex + 1) % items.length].description}</p>
+            </>
+          )}
+        </motion.div>
+      </div>
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+        {items.map((_, index) => (
+          <motion.div
+            key={index}
+            className={`h-2 w-2 rounded-full cursor-pointer transition-colors duration-300 ${
+              currentIndex === index ? 'bg-purple-400' : 'bg-purple-800/40'
+            }`}
+            animate={{ scale: currentIndex === index ? 1.3 : 1 }}
+            onClick={() => setCurrentIndex(index)}
+            transition={{ duration: 0.2 }}
+          />
+        ))}
       </div>
     </div>
   );

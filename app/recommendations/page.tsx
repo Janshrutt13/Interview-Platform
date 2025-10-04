@@ -110,15 +110,15 @@ export default function RecommendationsPage() {
 
   return (
     <ProtectedRoute>
-      <div className="max-w-6xl mx-auto p-8">
+      <div className="max-w-7xl mx-auto p-8 bg-gray-950 min-h-screen">
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Learning Recommendations</h1>
-        <p className="text-gray-600 mb-4">
+        <p className="text-gray-400 mb-4">
           Personalized content based on your skills: {userSkills.join(", ")}
         </p>
         <div className="flex flex-wrap gap-2 mb-4">
           {domains.map((domain) => (
-            <span key={domain} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+            <span key={domain} className="bg-blue-900 text-blue-200 px-3 py-1 rounded-full text-sm">
               {domain}
             </span>
           ))}
@@ -126,26 +126,30 @@ export default function RecommendationsPage() {
       </div>
 
       {recommendations && (
-        <div className="space-y-8">
+        <div className="space-y-12">
           {/* Courses */}
           <section>
-            <h2 className="text-2xl font-semibold mb-4">📚 Recommended Courses</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {recommendations.courses.map((course, index) => (
-                <div key={index} className="border rounded-lg p-4">
-                  <h3 className="font-semibold mb-2">{course.title}</h3>
-                  <p className="text-sm text-gray-600 mb-2">by {course.provider}</p>
-                  <p className="text-sm mb-3">{course.description}</p>
-                  <div className="flex justify-between items-center text-xs text-gray-500 mb-2">
-                    <span>{course.level}</span>
-                    <span>{course.estimatedHours}</span>
+            <h2 className="text-2xl font-bold text-white mb-6">📚 Recommended Courses</h2>
+            <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
+              {recommendations.courses.slice(0, 3).map((course, index) => (
+                <div key={index} className="flex-shrink-0 w-80 bg-gray-900 border border-gray-700 rounded-xl overflow-hidden hover:border-blue-500 transition-colors">
+                  <div className="h-48 bg-gradient-to-br from-blue-600 to-purple-700 flex items-center justify-center">
+                    <div className="text-6xl text-white opacity-80">📚</div>
                   </div>
-                  <div className="flex flex-wrap gap-1">
-                    {course.skills.map((skill, i) => (
-                      <span key={i} className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
-                        {skill}
-                      </span>
-                    ))}
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">{course.level}</span>
+                      <span className="bg-gray-700 text-gray-300 px-2 py-1 rounded-full text-xs">{course.estimatedHours}</span>
+                    </div>
+                    <h3 className="text-white font-semibold text-lg mb-2 line-clamp-2">{course.title}</h3>
+                    <p className="text-gray-400 text-sm mb-2">by {course.provider}</p>
+                    <p className="text-gray-300 text-sm mb-4 line-clamp-3">{course.description}</p>
+                    <Button 
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                      onClick={() => window.open(`https://www.google.com/search?q=${encodeURIComponent(course.title + ' ' + course.provider)}`, '_blank')}
+                    >
+                      View Course
+                    </Button>
                   </div>
                 </div>
               ))}
@@ -154,22 +158,26 @@ export default function RecommendationsPage() {
 
           {/* Blogs */}
           <section>
-            <h2 className="text-2xl font-semibold mb-4">📝 Recommended Blogs</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {recommendations.blogs.map((blog, index) => (
-                <div key={index} className="border rounded-lg p-4">
-                  <h3 className="font-semibold mb-2">{blog.title}</h3>
-                  <p className="text-sm text-gray-600 mb-2">by {blog.author}</p>
-                  <p className="text-sm mb-3">{blog.description}</p>
-                  <div className="flex justify-between items-center text-xs text-gray-500 mb-2">
-                    <span>{blog.readTime}</span>
+            <h2 className="text-2xl font-bold text-white mb-6">📝 Recommended Blogs</h2>
+            <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
+              {recommendations.blogs.slice(0, 3).map((blog, index) => (
+                <div key={index} className="flex-shrink-0 w-80 bg-gray-900 border border-gray-700 rounded-xl overflow-hidden hover:border-green-500 transition-colors">
+                  <div className="h-48 bg-gradient-to-br from-green-600 to-teal-700 flex items-center justify-center">
+                    <div className="text-6xl text-white opacity-80">📝</div>
                   </div>
-                  <div className="flex flex-wrap gap-1">
-                    {blog.skills.map((skill, i) => (
-                      <span key={i} className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
-                        {skill}
-                      </span>
-                    ))}
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="bg-green-600 text-white px-2 py-1 rounded-full text-xs font-medium">{blog.readTime}</span>
+                    </div>
+                    <h3 className="text-white font-semibold text-lg mb-2 line-clamp-2">{blog.title}</h3>
+                    <p className="text-gray-400 text-sm mb-2">by {blog.author}</p>
+                    <p className="text-gray-300 text-sm mb-4 line-clamp-3">{blog.description}</p>
+                    <Button 
+                      className="w-full bg-green-600 hover:bg-green-700 text-white"
+                      onClick={() => window.open(`https://www.google.com/search?q=${encodeURIComponent(blog.title + ' ' + blog.author)}`, '_blank')}
+                    >
+                      Read Blog
+                    </Button>
                   </div>
                 </div>
               ))}
@@ -178,22 +186,26 @@ export default function RecommendationsPage() {
 
           {/* Videos */}
           <section>
-            <h2 className="text-2xl font-semibold mb-4">🎥 Recommended Videos</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {recommendations.videos.map((video, index) => (
-                <div key={index} className="border rounded-lg p-4">
-                  <h3 className="font-semibold mb-2">{video.title}</h3>
-                  <p className="text-sm text-gray-600 mb-2">by {video.creator}</p>
-                  <p className="text-sm mb-3">{video.description}</p>
-                  <div className="flex justify-between items-center text-xs text-gray-500 mb-2">
-                    <span>{video.duration}</span>
+            <h2 className="text-2xl font-bold text-white mb-6">🎥 Recommended Videos</h2>
+            <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
+              {recommendations.videos.slice(0, 3).map((video, index) => (
+                <div key={index} className="flex-shrink-0 w-80 bg-gray-900 border border-gray-700 rounded-xl overflow-hidden hover:border-red-500 transition-colors">
+                  <div className="h-48 bg-gradient-to-br from-red-600 to-pink-700 flex items-center justify-center">
+                    <div className="text-6xl text-white opacity-80">🎥</div>
                   </div>
-                  <div className="flex flex-wrap gap-1">
-                    {video.skills.map((skill, i) => (
-                      <span key={i} className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
-                        {skill}
-                      </span>
-                    ))}
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="bg-red-600 text-white px-2 py-1 rounded-full text-xs font-medium">{video.duration}</span>
+                    </div>
+                    <h3 className="text-white font-semibold text-lg mb-2 line-clamp-2">{video.title}</h3>
+                    <p className="text-gray-400 text-sm mb-2">by {video.creator}</p>
+                    <p className="text-gray-300 text-sm mb-4 line-clamp-3">{video.description}</p>
+                    <Button 
+                      className="w-full bg-red-600 hover:bg-red-700 text-white"
+                      onClick={() => window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(video.title + ' ' + video.creator)}`, '_blank')}
+                    >
+                      Watch Video
+                    </Button>
                   </div>
                 </div>
               ))}
@@ -202,22 +214,26 @@ export default function RecommendationsPage() {
 
           {/* Books */}
           <section>
-            <h2 className="text-2xl font-semibold mb-4">📖 Recommended Books</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {recommendations.books.map((book, index) => (
-                <div key={index} className="border rounded-lg p-4">
-                  <h3 className="font-semibold mb-2">{book.title}</h3>
-                  <p className="text-sm text-gray-600 mb-2">by {book.author}</p>
-                  <p className="text-sm mb-3">{book.description}</p>
-                  <div className="flex justify-between items-center text-xs text-gray-500 mb-2">
-                    <span>{book.level}</span>
+            <h2 className="text-2xl font-bold text-white mb-6">📖 Recommended Books</h2>
+            <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
+              {recommendations.books.slice(0, 3).map((book, index) => (
+                <div key={index} className="flex-shrink-0 w-80 bg-gray-900 border border-gray-700 rounded-xl overflow-hidden hover:border-purple-500 transition-colors">
+                  <div className="h-48 bg-gradient-to-br from-purple-600 to-indigo-700 flex items-center justify-center">
+                    <div className="text-6xl text-white opacity-80">📖</div>
                   </div>
-                  <div className="flex flex-wrap gap-1">
-                    {book.skills.map((skill, i) => (
-                      <span key={i} className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
-                        {skill}
-                      </span>
-                    ))}
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="bg-purple-600 text-white px-2 py-1 rounded-full text-xs font-medium">{book.level}</span>
+                    </div>
+                    <h3 className="text-white font-semibold text-lg mb-2 line-clamp-2">{book.title}</h3>
+                    <p className="text-gray-400 text-sm mb-2">by {book.author}</p>
+                    <p className="text-gray-300 text-sm mb-4 line-clamp-3">{book.description}</p>
+                    <Button 
+                      className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+                      onClick={() => window.open(`https://www.google.com/search?q=${encodeURIComponent(book.title + ' ' + book.author + ' book')}`, '_blank')}
+                    >
+                      View Book
+                    </Button>
                   </div>
                 </div>
               ))}

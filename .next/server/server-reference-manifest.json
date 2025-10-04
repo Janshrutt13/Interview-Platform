@@ -53,12 +53,6 @@
           "exportedName": "signUp",
           "filename": "lib/actions/auth.action.ts"
         },
-        "app/(auth)/sign-up/page": {
-          "moduleId": "[project]/.next-internal/server/app/(auth)/sign-up/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/auth.action.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": true,
-          "exportedName": "signUp",
-          "filename": "lib/actions/auth.action.ts"
-        },
         "app/page": {
           "moduleId": "[project]/.next-internal/server/app/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/auth.action.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/lib/actions/general.action.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": true,
@@ -68,7 +62,6 @@
       },
       "layer": {
         "app/(auth)/sign-in/page": "action-browser",
-        "app/(auth)/sign-up/page": "action-browser",
         "app/page": "rsc"
       },
       "filename": "lib/actions/auth.action.ts",
@@ -82,12 +75,6 @@
           "exportedName": "signIn",
           "filename": "lib/actions/auth.action.ts"
         },
-        "app/(auth)/sign-up/page": {
-          "moduleId": "[project]/.next-internal/server/app/(auth)/sign-up/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/auth.action.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": true,
-          "exportedName": "signIn",
-          "filename": "lib/actions/auth.action.ts"
-        },
         "app/page": {
           "moduleId": "[project]/.next-internal/server/app/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/auth.action.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/lib/actions/general.action.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": true,
@@ -97,7 +84,6 @@
       },
       "layer": {
         "app/(auth)/sign-in/page": "action-browser",
-        "app/(auth)/sign-up/page": "action-browser",
         "app/page": "rsc"
       },
       "filename": "lib/actions/auth.action.ts",
