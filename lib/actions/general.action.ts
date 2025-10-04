@@ -2,6 +2,7 @@
 
 import { generateText } from "ai";
 import { google } from "@ai-sdk/google";
+import { adminDb } from "@/firebase/admin";
 
 export async function generateInterviewDossier(params: GenerateInterviewDossierParams) {
     const { jobDescription, resume, companyName, concerns, isAxonMode = false } = params;
@@ -119,6 +120,22 @@ Concerns: ${concerns}
         if (!text || text.trim().length === 0) {
             return { success: false, error: "AI generated empty response" };
         }
+
+        // Store dossier in Firestore
+        const dossierId = `dossier_${Date.now()}_${params.userId}`;
+        const dossierDoc = {
+            id: dossierId,
+            userId: params.userId,
+            jobDescription: params.jobDescription,
+            resume: params.resume,
+            companyName: params.companyName,
+            concerns: params.concerns,
+            dossier: text,
+            isAxonMode: params.isAxonMode || false,
+            createdAt: new Date(),
+        };
+
+        await adminDb.collection('dossiers').doc(dossierId).set(dossierDoc);
 
         return { success: true, dossier: text };
     } catch (error) {

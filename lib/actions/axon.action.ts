@@ -2,7 +2,7 @@
 
 import { generateText } from "ai";
 import { google } from "@ai-sdk/google";
-import { db } from "@/firebase/admin";
+import { adminDb } from "@/firebase/admin";
 
 // -------------------- START AXON SESSION --------------------
 export async function startAxonSession(params: StartAxonSessionParams) {
@@ -51,7 +51,7 @@ Example format: ["Tell me about yourself", "Describe a challenging project you w
       responses: []
     };
 
-    await db.collection("axon_sessions").doc(sessionId).set(sessionData);
+    await adminDb.collection("axon_sessions").doc(sessionId).set(sessionData);
 
     return {
       success: true,
@@ -74,7 +74,7 @@ export async function getInstantFeedback(params: GetInstantFeedbackParams) {
   const { sessionId, questionIndex, textAnswer, audioBlob } = params;
 
   try {
-    const sessionDoc = await db.collection("axon_sessions").doc(sessionId).get();
+    const sessionDoc = await adminDb.collection("axon_sessions").doc(sessionId).get();
     if (!sessionDoc.exists) {
       return { success: false, error: "Session not found" };
     }
@@ -149,7 +149,7 @@ If the answer contains random keywords or doesn't make sense, give LOW rating an
     }
 
     // Save the response with feedback
-    await db.collection("axon_sessions")
+    await adminDb.collection("axon_sessions")
       .doc(sessionId)
       .update({
         responses: [
@@ -170,12 +170,12 @@ If the answer contains random keywords or doesn't make sense, give LOW rating an
   }
 }
 
-// -------------------- END AXON SESSION --------------------
+
 export async function endAxonSession(params: { sessionId: string; userId: string }) {
   const { sessionId, userId } = params;
 
   try {
-    const sessionDoc = await db.collection("axon_sessions").doc(sessionId).get();
+    const sessionDoc = await adminDb.collection("axon_sessions").doc(sessionId).get();
     if (!sessionDoc.exists) {
       return { success: false, error: "Session not found" };
     }
@@ -205,7 +205,7 @@ Provide a brief summary of:
 4. Recommendation for next steps`
     });
 
-    await db.collection("axon_sessions").doc(sessionId).update({
+    await adminDb.collection("axon_sessions").doc(sessionId).update({
       status: "completed",
       endTime: new Date(),
       summary: summaryText
@@ -218,12 +218,12 @@ Provide a brief summary of:
   }
 }
 
-// -------------------- GET NEXT QUESTION --------------------
+
 export async function getNextQuestion(params: { sessionId: string; currentIndex: number }) {
   const { sessionId, currentIndex } = params;
 
   try {
-    const sessionDoc = await db.collection("axon_sessions").doc(sessionId).get();
+    const sessionDoc = await adminDb.collection("axon_sessions").doc(sessionId).get();
     if (!sessionDoc.exists) {
       return { success: false, error: "Session not found" };
     }
@@ -235,7 +235,7 @@ export async function getNextQuestion(params: { sessionId: string; currentIndex:
       return { success: true, isComplete: true };
     }
 
-    await db.collection("axon_sessions").doc(sessionId).update({
+    await adminDb.collection("axon_sessions").doc(sessionId).update({
       currentQuestionIndex: nextIndex
     });
 
@@ -251,10 +251,10 @@ export async function getNextQuestion(params: { sessionId: string; currentIndex:
   }
 }
 
-// -------------------- GET SESSION HISTORY --------------------
+
 export async function getAxonSessionHistory(userId: string) {
   try {
-    const sessionsQuery = await db.collection("axon_sessions")
+    const sessionsQuery = await adminDb.collection("axon_sessions")
       .where("userId", "==", userId)
       .orderBy("startTime", "desc")
       .limit(10)
@@ -281,7 +281,7 @@ export async function getAxonSessionHistory(userId: string) {
   }
 }
 
-// -------------------- TYPE DEFINITIONS --------------------
+
 interface StartAxonSessionParams {
   userId: string;
   jobRole: string;

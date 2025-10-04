@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth, db } from "@/firebase/admin";
+import { auth, adminDb } from "@/firebase/admin";
 import { FieldValue } from "firebase-admin/firestore";
 import { getAuth } from "firebase/auth";
 import { app } from "@/firebase/client";
@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
     
     const skillObj = { name: skill, domain };
     
-    const userRef = db.collection("users").doc(uid);
+    const userRef = adminDb.collection("users").doc(uid);
     const userDoc = await userRef.get();
     
     if (!userDoc.exists) {
@@ -71,7 +71,7 @@ export async function DELETE(req: NextRequest) {
     }
     
     const skillObj = { name: skill, domain };
-    const userRef = db.collection("users").doc(uid);
+    const userRef = adminDb.collection("users").doc(uid);
     await userRef.update({ skills: FieldValue.arrayRemove(skillObj) });
     return NextResponse.json({ success: true });
   } catch (error) {
@@ -87,7 +87,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
     
-    const userRef = db.collection("users").doc(uid);
+    const userRef = adminDb.collection("users").doc(uid);
     const userDoc = await userRef.get();
     
     if (!userDoc.exists) {

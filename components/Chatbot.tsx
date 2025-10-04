@@ -17,14 +17,18 @@ interface ChatbotProps {
 }
 
 export default function Chatbot({ interviewBriefing }: ChatbotProps) {
-  const [messages, setMessages] = useState<Message[]>([
-    {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    setMessages([{
       id: "1",
       role: "assistant",
       content: "Hi! I'm Coach, your AI Interview Coach. I'm here to help you understand and practice with your Interview Briefing. How can I assist you today?",
       timestamp: new Date()
-    }
-  ]);
+    }]);
+  }, []);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -126,8 +130,7 @@ export default function Chatbot({ interviewBriefing }: ChatbotProps) {
               >
                 <p className="text-sm whitespace-pre-wrap">{message.content}</p>
                 <p className="text-xs opacity-70 mt-1">
-                  {message.timestamp.getHours().toString().padStart(2, '0')}:
-                  {message.timestamp.getMinutes().toString().padStart(2, '0')}
+                  {mounted ? `${message.timestamp.getHours().toString().padStart(2, '0')}:${message.timestamp.getMinutes().toString().padStart(2, '0')}` : ''}
                 </p>
               </div>
             </div>

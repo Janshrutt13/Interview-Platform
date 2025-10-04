@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth, db } from "@/firebase/admin";
+import { auth, adminDb } from "@/firebase/admin";
 
 async function getUidFromRequest(req: NextRequest): Promise<string | null> {
   const authHeader = req.headers.get("authorization");
@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const userDoc = await db.collection("users").doc(uid).get();
+  const userDoc = await adminDb.collection("users").doc(uid).get();
   if (!userDoc.exists) {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
   if (userData?.dossiers) {
     dossiers = userData.dossiers;
   } else {
-    const dossiersSnap = await db.collection("users").doc(uid).collection("dossiers").get();
+    const dossiersSnap = await adminDb.collection("users").doc(uid).collection("dossiers").get();
     dossiers = dossiersSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
   }
 

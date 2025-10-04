@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth, db } from "@/firebase/admin";
+import { auth, adminDb } from "@/firebase/admin";
 import { generateText } from "ai";
 import { google } from "@ai-sdk/google";
 
@@ -25,7 +25,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
     
-    const userRef = db.collection("users").doc(uid);
+    const userRef = adminDb.collection("users").doc(uid);
     const userDoc = await userRef.get();
     
     if (!userDoc.exists) {

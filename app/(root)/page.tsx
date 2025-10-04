@@ -40,8 +40,8 @@ async function Home() {
                             <Button asChild className="bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30 rounded-full font-bold px-6">
                                 <Link href="/axon">Start AXON Practice</Link>
                             </Button>
-                            <Button asChild variant="outline" className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 rounded-full">
-                                <Link href="/interview">Create Dossier</Link>
+                            <Button asChild className="bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30 rounded-full font-bold px-6">
+                                <Link href="/dossier">Create Dossier</Link>
                             </Button>
                         </div>
                     </div>
@@ -55,9 +55,7 @@ async function Home() {
                     />
                 </section>
 
-                <div className="mx-16 max-sm:mx-4 my-12">
-                    <PhaseComparison />
-                </div>
+
 
                 <section className="flex flex-col gap-6 mt-8 bg-white/3 backdrop-blur-sm border border-white/10 p-8 rounded-2xl mx-16 max-sm:mx-4">
                     <h2 className="text-white text-3xl font-bold">How It Works</h2>

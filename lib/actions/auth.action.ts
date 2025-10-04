@@ -1,6 +1,6 @@
 'use server';
 
-import { db, auth } from "@/firebase/admin";
+import { adminDb, auth } from "@/firebase/admin";
 import { cookies } from "next/headers";
 
 const ONE_WEEK = 60 * 60 * 24 * 7; // seconds in a week
@@ -9,7 +9,7 @@ export async function signUp(params: SignUpParams) {
     const { uid, name, email } = params;
 
     try {
-        const userRecord = await db.collection("users").doc(uid).get();
+        const userRecord = await adminDb.collection("users").doc(uid).get();
 
         if (userRecord.exists) {
             return {
@@ -18,7 +18,7 @@ export async function signUp(params: SignUpParams) {
             };
         }
 
-        await db.collection("users").doc(uid).set({
+        await adminDb.collection("users").doc(uid).set({
             name,
             email,
         });
@@ -104,7 +104,7 @@ export async function getCurrentUser() : Promise<User | null> {
 
     try {
         const decodedClaims = await auth.verifySessionCookie(sessionCookie, true);
-        const userRecord = await db
+        const userRecord = await adminDb
             .collection("users")
             .doc(decodedClaims.uid)
             .get()

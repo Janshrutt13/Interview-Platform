@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/context/AuthContext";
 import { getAuth } from "firebase/auth";
+import Link from "next/link";
 
 interface Skill {
   name: string;
@@ -348,6 +349,14 @@ export default function SkillsPage() {
               </div>
             </div>
           </div>
+        </div>
+      )}
+      
+      {skills.length > 0 && (
+        <div className="mt-12 text-center">
+          <Button asChild className="btn-primary">
+            <Link href="/recommendations">Get Learning Recommendations</Link>
+          </Button>
         </div>
       )}
     </div>

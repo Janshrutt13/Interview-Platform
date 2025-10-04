@@ -37,8 +37,8 @@ interface NavLink {
 const navLinks: NavLink[] = [
   { href: "/", label: "Home" },
   { href: "/axon", label: "AXON Practice" },
+  { href: "/dossier", label: "Dossier" },
   { href: "/skills", label: "My Skills" },
-  { href: "/profile", label: "My Profile" },
   { href: "/about", label: "About" },
 ];
 
@@ -108,9 +108,7 @@ const Navbar: React.FC = () => {
                   <DropdownMenuLabel>
                     {currentUser.displayName || currentUser.email}
                   </DropdownMenuLabel>
-                  <DropdownMenuItem asChild>
-                    <Link href="/profile">Profile</Link>
-                  </DropdownMenuItem>
+
                   <DropdownMenuItem asChild>
                     <Link href="/skills">My Skills</Link>
                   </DropdownMenuItem>
@@ -170,9 +168,7 @@ const Navbar: React.FC = () => {
                           <DropdownMenuLabel>
                             {currentUser.displayName || currentUser.email}
                           </DropdownMenuLabel>
-                          <DropdownMenuItem asChild>
-                            <Link href="/profile">Profile</Link>
-                          </DropdownMenuItem>
+
                           <DropdownMenuItem asChild>
                             <Link href="/skills">My Skills</Link>
                           </DropdownMenuItem>
