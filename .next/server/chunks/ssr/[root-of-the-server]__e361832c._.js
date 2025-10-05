@@ -102,17 +102,19 @@ var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
 ;
 ;
 async function startAxonSession(params) {
-    const { userId, jobRole, experience, sessionType } = params;
+    const { userId, jobRole, experience, sessionType, questionType = 'mixed', numberOfQuestions = 5 } = params;
     try {
-        // Generate adaptive questions
+        // Generate adaptive questions based on type
+        const questionTypePrompt = questionType === 'behavioral' ? 'Focus only on behavioral questions using STAR method scenarios' : questionType === 'technical' ? 'Focus only on technical questions related to the role and required skills' : 'Include a balanced mix of behavioral, technical, and situational questions';
         const { text: questionsText } = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$ai$2f$dist$2f$index$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$locals$3e$__["generateText"])({
             model: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$ai$2d$sdk$2f$google$2f$dist$2f$index$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["google"])("gemini-2.0-flash-001"),
             system: "You are an expert interviewer. Generate realistic, progressive interview questions.",
-            prompt: `Generate 5 interview questions for a ${experience} level ${jobRole} position.
+            prompt: `Generate ${numberOfQuestions} interview questions for a ${experience} level ${jobRole} position.
 
+Question Type: ${questionType}
 Requirements:
+- ${questionTypePrompt}
 - Start with easier questions and progressively increase difficulty
-- Include behavioral, technical, and situational questions
 - Format as JSON array of strings
 - Questions should be realistic and commonly asked
 
@@ -121,14 +123,24 @@ Example format: ["Tell me about yourself", "Describe a challenging project you w
         let questions;
         try {
             questions = JSON.parse(questionsText);
+            if (!Array.isArray(questions) || questions.length === 0) {
+                throw new Error('Invalid questions format');
+            }
         } catch  {
-            questions = [
-                "Tell me about yourself and your background.",
-                "Why are you interested in this role?",
-                "Describe a challenging project you've worked on.",
-                "How do you handle working under pressure?",
-                "Where do you see yourself in 5 years?"
-            ];
+            // Retry AI generation with simpler prompt if parsing fails
+            const { text: retryText } = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$ai$2f$dist$2f$index$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$locals$3e$__["generateText"])({
+                model: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$ai$2d$sdk$2f$google$2f$dist$2f$index$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["google"])("gemini-2.0-flash-001"),
+                system: "Generate interview questions as a simple JSON array of strings.",
+                prompt: `Create ${numberOfQuestions} ${questionType} interview questions for ${jobRole} (${experience} level). Return only a JSON array like: ["Question 1", "Question 2"]`
+            });
+            try {
+                questions = JSON.parse(retryText);
+            } catch  {
+                return {
+                    success: false,
+                    error: "Failed to generate questions. Please try again."
+                };
+            }
         }
         const sessionId = `axon_${Date.now()}_${userId}`;
         const sessionData = {

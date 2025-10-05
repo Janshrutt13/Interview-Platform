@@ -34,6 +34,8 @@ export default function AxonInterviewPractice({ userName, userId }: AxonIntervie
   const [isRecording, setIsRecording] = useState(false);
   const [jobRole, setJobRole] = useState("");
   const [experience, setExperience] = useState("");
+  const [questionType, setQuestionType] = useState("");
+  const [numberOfQuestions, setNumberOfQuestions] = useState("5");
   const [isLoading, setIsLoading] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
 
@@ -41,11 +43,18 @@ export default function AxonInterviewPractice({ userName, userId }: AxonIntervie
   const audioChunksRef = useRef<Blob[]>([]);
 
   const startSession = async () => {
-    if (!jobRole || !experience) return alert("Please fill in job role and experience level");
+    if (!jobRole || !experience || !questionType) return alert("Please fill in all required fields");
 
     setIsLoading(true);
     try {
-      const result = await startAxonSession({ userId, jobRole, experience, sessionType: "practice" });
+      const result = await startAxonSession({ 
+        userId, 
+        jobRole, 
+        experience, 
+        sessionType: "practice",
+        questionType,
+        numberOfQuestions: parseInt(numberOfQuestions)
+      });
       if (result.success && result.session) {
         setSessionData(result.session);
         setIsActive(true);
@@ -200,6 +209,36 @@ export default function AxonInterviewPractice({ userName, userId }: AxonIntervie
                       <option value="entry">Entry Level (0-2 years)</option>
                       <option value="mid">Mid Level (3-5 years)</option>
                       <option value="senior">Senior Level (6+ years)</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-3">
+                    <Label htmlFor="questionType" className="label text-base">Question Type</Label>
+                    <select
+                      id="questionType"
+                      value={questionType}
+                      onChange={(e) => setQuestionType(e.target.value)}
+                      className="input"
+                    >
+                      <option value="">Select question type</option>
+                      <option value="behavioral">Behavioral Questions</option>
+                      <option value="technical">Technical Questions</option>
+                      <option value="mixed">Mixed (Behavioral + Technical)</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-3">
+                    <Label htmlFor="numberOfQuestions" className="label text-base">Number of Questions</Label>
+                    <select
+                      id="numberOfQuestions"
+                      value={numberOfQuestions}
+                      onChange={(e) => setNumberOfQuestions(e.target.value)}
+                      className="input"
+                    >
+                      <option value="3">3 Questions</option>
+                      <option value="5">5 Questions</option>
+                      <option value="7">7 Questions</option>
+                      <option value="10">10 Questions</option>
                     </select>
                   </div>
 
