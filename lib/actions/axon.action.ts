@@ -9,47 +9,29 @@ export async function startAxonSession(params: StartAxonSessionParams) {
   const { userId, jobRole, experience, sessionType, questionType = 'mixed', numberOfQuestions = 5 } = params;
 
   try {
-    // Generate adaptive questions based on type
-    const questionTypePrompt = questionType === 'behavioral' 
-      ? 'Focus only on behavioral questions using STAR method scenarios'
-      : questionType === 'technical'
-      ? 'Focus only on technical questions related to the role and required skills'
-      : 'Include a balanced mix of behavioral, technical, and situational questions';
-
     const { text: questionsText } = await generateText({
       model: google("gemini-2.0-flash-001"),
-      system: "You are an expert interviewer. Generate realistic, progressive interview questions.",
-      prompt: `Generate ${numberOfQuestions} interview questions for a ${experience} level ${jobRole} position.
-
-Question Type: ${questionType}
-Requirements:
-- ${questionTypePrompt}
-- Start with easier questions and progressively increase difficulty
-- Format as JSON array of strings
-- Questions should be realistic and commonly asked
-
-Example format: ["Tell me about yourself", "Describe a challenging project you worked on"]`
+      system: "Generate interview questions as JSON array only.",
+      prompt: `Generate ${numberOfQuestions} ${questionType} interview questions for ${jobRole}. Return ONLY a JSON array like: ["Question 1", "Question 2", "Question 3"]`
     });
 
     let questions: string[];
     try {
-      questions = JSON.parse(questionsText);
-      if (!Array.isArray(questions) || questions.length === 0) {
-        throw new Error('Invalid questions format');
+      // Clean the response to extract JSON
+      let cleanText = questionsText.trim();
+      if (cleanText.includes('```')) {
+        cleanText = cleanText.replace(/```json?/g, '').replace(/```/g, '').trim();
       }
+      questions = JSON.parse(cleanText);
     } catch {
-      // Retry AI generation with simpler prompt if parsing fails
-      const { text: retryText } = await generateText({
-        model: google("gemini-2.0-flash-001"),
-        system: "Generate interview questions as a simple JSON array of strings.",
-        prompt: `Create ${numberOfQuestions} ${questionType} interview questions for ${jobRole} (${experience} level). Return only a JSON array like: ["Question 1", "Question 2"]`
-      });
-      
-      try {
-        questions = JSON.parse(retryText);
-      } catch {
-        return { success: false, error: "Failed to generate questions. Please try again." };
-      }
+      // Use simple fallback questions
+      questions = [
+        "Tell me about yourself.",
+        "Why are you interested in this role?",
+        "What are your strengths?",
+        "Describe a challenge you faced.",
+        "Where do you see yourself in 5 years?"
+      ].slice(0, numberOfQuestions);
     }
 
     const sessionId = `axon_${Date.now()}_${userId}`;
@@ -294,22 +276,4 @@ export async function getAxonSessionHistory(userId: string) {
     console.error("Error fetching session history:", error);
     return { success: false, error: "Failed to fetch session history" };
   }
-}
-
-
-interface StartAxonSessionParams {
-  userId: string;
-  jobRole: string;
-  experience: string;
-  sessionType: string;
-  questionType?: string;
-  numberOfQuestions?: number;
-}
-
-interface GetInstantFeedbackParams {
-  sessionId: string;
-  questionIndex: number;
-  textAnswer: string;
-  audioBlob?: Blob;
-  userId: string;
 }

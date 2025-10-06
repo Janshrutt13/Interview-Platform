@@ -47,6 +47,7 @@ export default function AxonInterviewPractice({ userName, userId }: AxonIntervie
 
     setIsLoading(true);
     try {
+      console.log('Starting session with params:', { userId, jobRole, experience, questionType, numberOfQuestions });
       const result = await startAxonSession({ 
         userId, 
         jobRole, 
@@ -55,12 +56,16 @@ export default function AxonInterviewPractice({ userName, userId }: AxonIntervie
         questionType,
         numberOfQuestions: parseInt(numberOfQuestions)
       });
+      console.log('Session result:', result);
       if (result.success && result.session) {
         setSessionData(result.session);
         setIsActive(true);
+      } else {
+        alert(result.error || 'Failed to start session');
       }
     } catch (error) {
       console.error("Failed to start session:", error);
+      alert('Error starting session. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -320,15 +325,15 @@ export default function AxonInterviewPractice({ userName, userId }: AxonIntervie
 
             <div className="text-center text-light-100 opacity-60">OR</div>
 
-            <div className="space-y-4">
+            <div className="space-y-4 w-full">
               <Label className="text-base font-medium text-light-100">Type your answer:</Label>
-              <div className="card-border">
-                <div className="card">
+              <div className="card-border w-full">
+                <div className="card w-full">
                   <textarea
                     value={currentAnswer}
                     onChange={(e) => setCurrentAnswer(e.target.value)}
                     placeholder="Type your detailed answer here..."
-                    className="w-full h-40 p-4 bg-transparent text-light-100 placeholder:text-light-100/50 border-none outline-none resize-none rounded-lg"
+                    className="w-full h-60 p-4 bg-transparent text-light-100 placeholder:text-light-100/50 border-none outline-none resize-none rounded-lg"
                     disabled={isRecording}
                   />
                 </div>

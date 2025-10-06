@@ -35,10 +35,10 @@ __turbopack_async_result__();
 return __turbopack_context__.a(async (__turbopack_handle_async_dependencies__, __turbopack_async_result__) => { try {
 
 __turbopack_context__.s([
+    "adminDb",
+    ()=>adminDb,
     "auth",
-    ()=>auth,
-    "db",
-    ()=>db
+    ()=>auth
 ]);
 var __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2d$admin$2f$app__$5b$external$5d$__$28$firebase$2d$admin$2f$app$2c$__esm_import$29$__ = __turbopack_context__.i("[externals]/firebase-admin/app [external] (firebase-admin/app, esm_import)");
 var __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2d$admin$2f$auth__$5b$external$5d$__$28$firebase$2d$admin$2f$auth$2c$__esm_import$29$__ = __turbopack_context__.i("[externals]/firebase-admin/auth [external] (firebase-admin/auth, esm_import)");
@@ -68,7 +68,7 @@ const initFirebaseAdmin = ()=>{
         db: (0, __TURBOPACK__imported__module__$5b$externals$5d2f$firebase$2d$admin$2f$firestore__$5b$external$5d$__$28$firebase$2d$admin$2f$firestore$2c$__esm_import$29$__["getFirestore"])()
     };
 };
-const { db, auth } = initFirebaseAdmin();
+const { db: adminDb, auth } = initFirebaseAdmin();
 __turbopack_async_result__();
 } catch(e) { __turbopack_async_result__(e); } }, false);}),
 "[project]/lib/actions/auth.action.ts [app-rsc] (ecmascript)", ((__turbopack_context__) => {
@@ -105,14 +105,14 @@ const ONE_WEEK = 60 * 60 * 24 * 7; // seconds in a week
 async function signUp(params) {
     const { uid, name, email } = params;
     try {
-        const userRecord = await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["db"].collection("users").doc(uid).get();
+        const userRecord = await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["adminDb"].collection("users").doc(uid).get();
         if (userRecord.exists) {
             return {
                 success: false,
                 message: "User already exists, please Sign Up"
             };
         }
-        await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["db"].collection("users").doc(uid).set({
+        await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["adminDb"].collection("users").doc(uid).set({
             name,
             email
         });
@@ -180,7 +180,7 @@ async function getCurrentUser() {
     if (!sessionCookie) return null;
     try {
         const decodedClaims = await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["auth"].verifySessionCookie(sessionCookie, true);
-        const userRecord = await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["db"].collection("users").doc(decodedClaims.uid).get();
+        const userRecord = await __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["adminDb"].collection("users").doc(decodedClaims.uid).get();
         if (!userRecord) return null;
         return {
             ...userRecord.data(),

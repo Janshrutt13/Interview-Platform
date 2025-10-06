@@ -102,6 +102,8 @@ interface StartAxonSessionParams {
   jobRole: string;
   experience: string;
   sessionType: string;
+  questionType?: string;
+  numberOfQuestions?: number;
 }
 
 interface GetInstantFeedbackParams {
