@@ -71,3 +71,5 @@ package-lock.json # Optional: some teams commit this, others don't.
 # OS generated files
 .Spotlight-V100
 .Trashes
+
+.next/
