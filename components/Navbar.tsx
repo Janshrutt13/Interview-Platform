@@ -67,7 +67,7 @@ const Navbar: React.FC = () => {
 
   return (
     <header className="fixed top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex items-center h-16 justify-between mx-auto px-4">
+      <div className="container flex items-center h-14 sm:h-16 justify-between mx-auto px-4">
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8 w-full">
           <NavigationMenu>
@@ -125,21 +125,21 @@ const Navbar: React.FC = () => {
         </div>
         {/* Mobile Navigation */}
         <div className="flex md:hidden items-center w-full justify-between">
-          <span className="font-bold text-lg tracking-wide">InstaPrep</span>
+          <span className="font-bold text-base sm:text-lg tracking-wide">InstaPrep</span>
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="outline" size="icon" aria-label="Open menu">
+              <Button variant="outline" size="icon" aria-label="Open menu" className="h-10 w-10">
                 <Menu className="w-5 h-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="p-0 w-64">
+            <SheetContent side="left" className="p-0 w-72 sm:w-80">
               <nav className="flex flex-col h-full justify-between py-6">
                 <div>
                   {navLinks.map((link) => (
                     <Link
                       key={link.href}
                       href={link.href}
-                      className={`block px-6 py-3 text-base font-medium transition-colors ${
+                      className={`block px-6 py-4 text-base font-medium transition-colors ${
                         pathname === link.href
                           ? "bg-primary text-primary-foreground"
                           : "text-muted-foreground hover:bg-muted hover:text-foreground"

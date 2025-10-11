@@ -30,14 +30,14 @@ async function Home() {
 
             {/* Content with transparent backgrounds */}
             <div className="relative z-10">
-                <section className="flex flex-row items-center justify-between px-16 py-12 max-sm:px-4 mx-16 max-sm:mx-4 my-12 bg-white/3 backdrop-blur-sm border border-white/10 rounded-3xl">
-                    <div className="flex flex-col gap-6 max-w-lg">
-                        <h2 className="text-white text-4xl font-bold">Master Your Interview Skills</h2>
-                        <p className="text-lg text-white/80">
+                <section className="flex flex-col lg:flex-row items-center justify-between px-4 sm:px-8 lg:px-16 py-8 lg:py-12 mx-4 sm:mx-8 lg:mx-16 my-8 lg:my-12 bg-white/3 backdrop-blur-sm border border-white/10 rounded-3xl gap-6 lg:gap-0">
+                    <div className="flex flex-col gap-4 lg:gap-6 max-w-lg text-center lg:text-left">
+                        <h2 className="text-white text-2xl sm:text-3xl lg:text-4xl font-bold">Master Your Interview Skills</h2>
+                        <p className="text-base sm:text-lg text-white/80">
                             Two-phase approach: Practice with AXON for real-time feedback, then create strategic dossiers for deep preparation
                         </p>
 
-                        <div className="flex gap-4 max-sm:flex-col">
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                             <Button asChild className="bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30 rounded-full font-bold px-6">
                                 <Link href="/axon">Start AXON Practice</Link>
                             </Button>
@@ -47,21 +47,23 @@ async function Home() {
                         </div>
                     </div>
 
-                    <Image
-                        src="/robot.png"
-                        alt="robo-dude"
-                        width={400}
-                        height={400}
-                        className="opacity-90 max-sm:hidden"
-                    />
+                    <div className="flex justify-center lg:justify-end">
+                        <Image
+                            src="/robot.png"
+                            alt="robo-dude"
+                            width={300}
+                            height={300}
+                            className="opacity-90 lg:w-[400px] lg:h-[400px]"
+                        />
+                    </div>
                 </section>
 
 
                 {/* Carousel */}
-                <section className="flex flex-col gap-6 mt-8 mx-16 max-sm:mx-4">
-                    <h2 className="text-white text-3xl font-bold text-center">How It Works</h2>
+                <section className="flex flex-col gap-6 mt-8 mx-4 sm:mx-8 lg:mx-16">
+                    <h2 className="text-white text-2xl sm:text-3xl font-bold text-center">How It Works</h2>
                     <div className="flex justify-center">
-                        <div style={{ height: '500px', position: 'relative' }}>
+                        <div className="h-[300px] sm:h-[400px] lg:h-[500px] relative w-full max-w-2xl mx-auto">
                             <Carousel
                                 items={[
                                     {
@@ -94,8 +96,8 @@ async function Home() {
                     </div>
                 </section>
 
-                <section className="flex flex-col gap-6 mt-8 bg-white/3 backdrop-blur-sm border border-white/10 p-8 rounded-2xl mx-16 max-sm:mx-4">
-                    <h2 className="text-white text-3xl font-bold">Practice with Coach</h2>
+                <section className="flex flex-col gap-6 mt-8 bg-white/3 backdrop-blur-sm border border-white/10 p-4 sm:p-8 rounded-2xl mx-4 sm:mx-8 lg:mx-16">
+                    <h2 className="text-white text-2xl sm:text-3xl font-bold">Practice with Coach</h2>
                     <p className="text-white/70">Get personalized interview coaching and practice with our AI assistant</p>
                     <Chatbot />
                 </section>

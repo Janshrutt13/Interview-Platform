@@ -149,58 +149,58 @@ export default function Carousel({
     <div
       ref={containerRef}
       className="relative w-full h-full flex items-center justify-center overflow-visible"
-      style={{ width: `${baseWidth}px`, height: '400px' }}
+      style={{ width: '100%', maxWidth: `${baseWidth}px`, height: '300px' }}
     >
-      <div className="flex items-center justify-center gap-8">
+      <div className="flex items-center justify-center gap-2 sm:gap-4 lg:gap-8">
         {/* Previous card */}
         <motion.div
-          className="relative flex flex-col items-center justify-center bg-gradient-to-br from-purple-900/20 to-black/40 border border-purple-500/20 rounded-2xl p-6 cursor-pointer"
-          style={{ width: '200px', height: '280px' }}
+          className="relative flex flex-col items-center justify-center bg-gradient-to-br from-purple-900/20 to-black/40 border border-purple-500/20 rounded-2xl p-3 sm:p-6 cursor-pointer hidden sm:flex"
+          style={{ width: '120px', height: '180px' }}
           animate={{ opacity: 0.6, scale: 0.85, rotateY: -15 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
           onClick={() => setCurrentIndex(prev => (prev - 1 + items.length) % items.length)}
         >
           {items[(currentIndex - 1 + items.length) % items.length] && (
             <>
-              <div className="text-4xl mb-4">{items[(currentIndex - 1 + items.length) % items.length].icon}</div>
-              <div className="text-purple-300 text-2xl font-bold mb-2">{(currentIndex - 1 + items.length) % items.length + 1}</div>
-              <h3 className="text-white text-lg font-semibold text-center mb-2">{items[(currentIndex - 1 + items.length) % items.length].title}</h3>
-              <p className="text-gray-300 text-sm text-center">{items[(currentIndex - 1 + items.length) % items.length].description}</p>
+              <div className="text-2xl sm:text-4xl mb-2 sm:mb-4">{items[(currentIndex - 1 + items.length) % items.length].icon}</div>
+              <div className="text-purple-300 text-lg sm:text-2xl font-bold mb-1 sm:mb-2">{(currentIndex - 1 + items.length) % items.length + 1}</div>
+              <h3 className="text-white text-sm sm:text-lg font-semibold text-center mb-1 sm:mb-2">{items[(currentIndex - 1 + items.length) % items.length].title}</h3>
+              <p className="text-gray-300 text-xs sm:text-sm text-center">{items[(currentIndex - 1 + items.length) % items.length].description}</p>
             </>
           )}
         </motion.div>
 
         {/* Current card */}
         <motion.div
-          className="relative flex flex-col items-center justify-center bg-gradient-to-br from-purple-800/30 to-black/60 border border-purple-400/30 rounded-2xl p-8 shadow-2xl"
-          style={{ width: '280px', height: '350px' }}
+          className="relative flex flex-col items-center justify-center bg-gradient-to-br from-purple-800/30 to-black/60 border border-purple-400/30 rounded-2xl p-4 sm:p-8 shadow-2xl"
+          style={{ width: '240px', height: '280px' }}
           animate={{ scale: 1, opacity: 1, rotateY: 0 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
           {items[currentIndex] && (
             <>
-              <div className="text-5xl mb-6">{items[currentIndex].icon}</div>
-              <div className="text-purple-200 text-3xl font-bold mb-4">{currentIndex + 1}</div>
-              <h3 className="text-white text-xl font-bold text-center mb-4">{items[currentIndex].title}</h3>
-              <p className="text-gray-200 text-center">{items[currentIndex].description}</p>
+              <div className="text-3xl sm:text-5xl mb-3 sm:mb-6">{items[currentIndex].icon}</div>
+              <div className="text-purple-200 text-2xl sm:text-3xl font-bold mb-2 sm:mb-4">{currentIndex + 1}</div>
+              <h3 className="text-white text-lg sm:text-xl font-bold text-center mb-2 sm:mb-4">{items[currentIndex].title}</h3>
+              <p className="text-gray-200 text-sm sm:text-base text-center">{items[currentIndex].description}</p>
             </>
           )}
         </motion.div>
 
         {/* Next card */}
         <motion.div
-          className="relative flex flex-col items-center justify-center bg-gradient-to-br from-purple-900/20 to-black/40 border border-purple-500/20 rounded-2xl p-6 cursor-pointer"
-          style={{ width: '200px', height: '280px' }}
+          className="relative flex flex-col items-center justify-center bg-gradient-to-br from-purple-900/20 to-black/40 border border-purple-500/20 rounded-2xl p-3 sm:p-6 cursor-pointer hidden sm:flex"
+          style={{ width: '120px', height: '180px' }}
           animate={{ opacity: 0.6, scale: 0.85, rotateY: 15 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
           onClick={() => setCurrentIndex(prev => (prev + 1) % items.length)}
         >
           {items[(currentIndex + 1) % items.length] && (
             <>
-              <div className="text-4xl mb-4">{items[(currentIndex + 1) % items.length].icon}</div>
-              <div className="text-purple-300 text-2xl font-bold mb-2">{(currentIndex + 1) % items.length + 1}</div>
-              <h3 className="text-white text-lg font-semibold text-center mb-2">{items[(currentIndex + 1) % items.length].title}</h3>
-              <p className="text-gray-300 text-sm text-center">{items[(currentIndex + 1) % items.length].description}</p>
+              <div className="text-2xl sm:text-4xl mb-2 sm:mb-4">{items[(currentIndex + 1) % items.length].icon}</div>
+              <div className="text-purple-300 text-lg sm:text-2xl font-bold mb-1 sm:mb-2">{(currentIndex + 1) % items.length + 1}</div>
+              <h3 className="text-white text-sm sm:text-lg font-semibold text-center mb-1 sm:mb-2">{items[(currentIndex + 1) % items.length].title}</h3>
+              <p className="text-gray-300 text-xs sm:text-sm text-center">{items[(currentIndex + 1) % items.length].description}</p>
             </>
           )}
         </motion.div>

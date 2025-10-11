@@ -13,6 +13,7 @@ const monaSans = Mona_Sans({
 export const metadata: Metadata = {
   title: "InstaPrep",
   description: "An AI-Powered Interview platform",
+  viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({
@@ -25,7 +26,7 @@ export default function RootLayout({
       <body className={`${monaSans.className}  antialiased pattern`}>
         <AuthProvider>
           <Navbar />
-          <div className="pt-20">{/* Add padding for fixed navbar */}
+          <div className="pt-16 sm:pt-20">{/* Add padding for fixed navbar */}
             {children}
           </div>
           <Toaster/>
