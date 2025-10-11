@@ -177,20 +177,20 @@ export default function AxonInterviewPractice({ userName, userId }: AxonIntervie
   if (!isActive) {
     return (
       <div className="max-w-4xl mx-auto space-y-8">
-        <div className="text-center space-y-4 sm:space-y-6">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">AXON Interview Strategist</h1>
-          <p className="text-lg sm:text-xl">Real-time interview practice with instant AI feedback</p>
+        <div className="text-center space-y-6">
+          <h1 className="text-4xl font-bold">AXON Interview Strategist</h1>
+          <p className="text-xl">Real-time interview practice with instant AI feedback</p>
           <div className="flex justify-center gap-4 mt-6">
             <Button onClick={() => setShowHistory(true)} variant="outline" className="btn-secondary">View Session History</Button>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start"
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           <div className="card-border">
             <div className="card">
-              <div className="p-4 sm:p-6 lg:p-8">
-                <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-center">Start Your Session</h2>
-                <div className="form space-y-4 sm:space-y-6">
+              <div className="p-8">
+                <h2 className="text-2xl font-bold mb-6 text-center">Start Your Session</h2>
+                <div className="form space-y-6">
                   <div className="space-y-3">
                     <Label htmlFor="jobRole" className="label text-base">Job Role</Label>
                     <Input
@@ -261,8 +261,8 @@ export default function AxonInterviewPractice({ userName, userId }: AxonIntervie
 
           <div className="card-border">
             <div className="card">
-              <div className="p-4 sm:p-6 lg:p-8">
-                <h3 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6 text-center">What makes AXON different:</h3>
+              <div className="p-8">
+                <h3 className="text-xl font-semibold mb-6 text-center">What makes AXON different:</h3>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
                     <span className="text-2xl">🎤</span>
@@ -305,20 +305,20 @@ export default function AxonInterviewPractice({ userName, userId }: AxonIntervie
     <div className="max-w-6xl mx-auto space-y-8">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2">AXON Live Session</h1>
-          <p className="text-base sm:text-lg text-light-100">Question {(sessionData?.questionIndex ?? 0) + 1} of {sessionData?.totalQuestions}</p>
+          <h1 className="text-4xl font-bold mb-2">AXON Live Session</h1>
+          <p className="text-lg text-light-100">Question {(sessionData?.questionIndex ?? 0) + 1} of {sessionData?.totalQuestions}</p>
         </div>
-        <Button onClick={endSession} variant="outline" disabled={isLoading} className="btn-secondary px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base">End Session</Button>
+        <Button onClick={endSession} variant="outline" disabled={isLoading} className="btn-secondary px-6 py-3">End Session</Button>
       </div>
 
       <div className="card-border">
-        <div className="card p-4 sm:p-6">
-          <h2 className="text-lg sm:text-xl font-semibold mb-4">Current Question:</h2>
-          <p className="text-base sm:text-lg mb-4 sm:mb-6">{sessionData?.currentQuestion}</p>
+        <div className="card p-6">
+          <h2 className="text-xl font-semibold mb-4">Current Question:</h2>
+          <p className="text-lg mb-6">{sessionData?.currentQuestion}</p>
 
-          <div className="space-y-4 sm:space-y-6">
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button onClick={isRecording ? stopRecording : startRecording} className={`${isRecording ? 'btn-disconnect' : 'btn-call'} px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base`} disabled={isLoading}>
+          <div className="space-y-6">
+            <div className="flex gap-4 justify-center">
+              <Button onClick={isRecording ? stopRecording : startRecording} className={`${isRecording ? 'btn-disconnect' : 'btn-call'} px-8 py-3`} disabled={isLoading}>
                 {isRecording ? "Stop Recording" : "Start Voice Answer"}
               </Button>
             </div>
@@ -333,7 +333,7 @@ export default function AxonInterviewPractice({ userName, userId }: AxonIntervie
                     value={currentAnswer}
                     onChange={(e) => setCurrentAnswer(e.target.value)}
                     placeholder="Type your detailed answer here..."
-                    className="w-full h-40 sm:h-60 p-3 sm:p-4 bg-transparent text-light-100 placeholder:text-light-100/50 border-none outline-none resize-none rounded-lg text-sm sm:text-base"
+                    className="w-full h-60 p-4 bg-transparent text-light-100 placeholder:text-light-100/50 border-none outline-none resize-none rounded-lg"
                     disabled={isRecording}
                   />
                 </div>

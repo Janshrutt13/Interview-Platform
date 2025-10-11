@@ -101,7 +101,7 @@ export default function Chatbot({ interviewBriefing }: ChatbotProps) {
   };
 
   return (
-    <div className="card-border max-w-2xl mx-auto w-full">
+    <div className="card-border max-w-2xl mx-auto">
       <div className="card-interview">
         {/* Header */}
         <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-200">
@@ -115,20 +115,20 @@ export default function Chatbot({ interviewBriefing }: ChatbotProps) {
         </div>
 
         {/* Messages */}
-        <div className="h-64 sm:h-80 lg:h-96 overflow-y-auto mb-4 space-y-4">
+        <div className="h-96 overflow-y-auto mb-4 space-y-4">
           {messages.map((message) => (
             <div
               key={message.id}
               className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
             >
               <div
-                className={`max-w-[85%] sm:max-w-[80%] p-2 sm:p-3 rounded-lg ${
+                className={`max-w-[80%] p-3 rounded-lg ${
                   message.role === "user"
                     ? "bg-blue-500 text-white"
                     : "bg-gray-800 border border-gray-600 text-white"
                 }`}
               >
-                <p className="text-xs sm:text-sm whitespace-pre-wrap">{message.content}</p>
+                <p className="text-sm whitespace-pre-wrap">{message.content}</p>
                 <p className="text-xs opacity-70 mt-1">
                   {mounted ? `${message.timestamp.getHours().toString().padStart(2, '0')}:${message.timestamp.getMinutes().toString().padStart(2, '0')}` : ''}
                 </p>
@@ -150,19 +150,19 @@ export default function Chatbot({ interviewBriefing }: ChatbotProps) {
         </div>
 
         {/* Input */}
-        <div className="flex flex-col sm:flex-row gap-2">
+        <div className="flex gap-2">
           <Input
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Ask me about your interview preparation..."
             disabled={isLoading}
-            className="flex-1 text-sm sm:text-base"
+            className="flex-1"
           />
           <Button
             onClick={handleSendMessage}
             disabled={isLoading || !inputValue.trim()}
-            className="btn-primary text-sm sm:text-base px-4 sm:px-6"
+            className="btn-primary"
           >
             Send
           </Button>
@@ -171,7 +171,7 @@ export default function Chatbot({ interviewBriefing }: ChatbotProps) {
         {/* Quick Actions */}
         <div className="mt-4 pt-4 border-t border-gray-200">
           <p className="text-xs text-gray-500 mb-2">Quick actions:</p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <div className="flex flex-wrap gap-2">
             <Button
               variant="outline"
               size="sm"
